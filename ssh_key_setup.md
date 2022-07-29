@@ -10,7 +10,7 @@ Example:- ssh -p 21350 u27653@216.32.44.12
 ```
 - Generate SSH Key
 ```sh
-ssh-keygen -t rsa -b 4096
+ssh-keygen -f C:\Users\R/.ssh/my_key -t rsa -b 4096
 ```
 - Copy SSH Public Key to Remote Server (Not for Windows)
 ```sh
