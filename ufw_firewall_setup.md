@@ -87,7 +87,7 @@ Example:- ufw allow from 192.168.1.4 to any port 45
    Syntax:- ufw delete number
    Example:- ufw delete 3
 ```
-- To Reset Default Setting:
+- To Reset to Default Setting:
 ```sh
 ufw reset
 ```
