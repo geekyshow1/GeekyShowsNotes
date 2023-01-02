@@ -8,6 +8,8 @@ Without setting up SSH Key It will ask Password each time we try to get access
 Syntax:- ssh -p PORT USERNAME@HOSTIP
 Example:- ssh -p 21350 u27653@216.32.44.12
 ```
+
+#### Note:- Run Below Commands on Your Local Machine, Not on Your VPS or Remote Server
 - Generate SSH Key
 ```sh
 ssh-keygen -f C:\Users\R/.ssh/my_key -t rsa -b 4096
