@@ -35,6 +35,10 @@ then Change: IPV6=yes
 ufw disable
 ufw enable
 ```
+- To Check Open Port, Tt will show only those which are currently running:
+```sh
+netstat -tulpn
+```
 - To Open Port:
 ```sh
 Syntax:- ufw allow port/protocol
