@@ -13,7 +13,7 @@ Example:- ssh -p 22 root@216.32.44.12
 ```
 - Install UFW
 ```sh
-apt-get install ufw
+apt install ufw
 ```
 - Enable UFW
 ```sh
