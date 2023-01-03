@@ -27,7 +27,7 @@ apt install mysql-server
 ```sh
 apt install php libapache2-mod-php php-mysql
 The above command includes three packages:-
-php -  TO Install PHP
+php -  To Install PHP
 libapache2-mod-php - It is Used by apache to handle PHP files
 php-mysql - It is a PHP module that allows PHP to connect to MySQL 
 ```
