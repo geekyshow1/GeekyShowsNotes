@@ -23,7 +23,7 @@ certbot --apache
 ```
 - Check Status of Certbot
 ```sh
-service certbot.timer status
+systemctl status certbot.timer
 ```
 - Dry Run SSL Renewal
 ```sh
