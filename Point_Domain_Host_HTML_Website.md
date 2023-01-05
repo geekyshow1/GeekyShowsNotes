@@ -71,7 +71,7 @@ nano /etc/apache2/sites-available/your_domain.conf
 - Enable Virtual Host
 ```sh
 cd /etc/apache2/sites-available/
-a2ensite domain.conf
+a2ensite your_domain.conf
 ```
 - You can Disable Default Virtual Host
 ```sh
