@@ -37,7 +37,7 @@ nano 000-default.conf
 ```
 - Add below Content
 ```sh
-<Directory /var/www/>
+<Directory /var/www/html/>
         Options FollowSymLinks
         AllowOverride None
         Require all granted
