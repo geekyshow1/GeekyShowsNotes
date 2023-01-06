@@ -19,7 +19,12 @@ mysql
 ```
 - Set Password for Root
 ```sh
-ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password by 'Hello123456#';
+Syntax:- ALTER USER 'user_name'@'localhost' IDENTIFIED WITH caching_sha2_password by 'user_password';
+Example:- ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password by 'Hello123456#';
+```
+- Exit from MySQL
+```sh
+exit
 ```
 - Run the mysql_secure_installation Program
 ```sh
