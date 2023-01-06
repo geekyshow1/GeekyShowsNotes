@@ -23,11 +23,13 @@ mysql -u root -p
 ```
 - Create New User
 ```sh
-CREATE USER 'user_name'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'user_password';
+Syntax:- CREATE USER 'user_name'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'user_password';
+Example:- CREATE USER 'kumar'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'Hello123456#';
 ```
 - Grant New User All Privileges
 ```sh
-GRANT ALL PRIVILEGES ON *.* TO 'user_name'@'localhost' WITH GRANT OPTION;
+Syntax:- GRANT ALL PRIVILEGES ON *.* TO 'user_name'@'localhost' WITH GRANT OPTION;
+Syntax:- GRANT ALL PRIVILEGES ON *.* TO 'kumar'@'localhost' WITH GRANT OPTION;
 ```
 - Exit from MySQL
 ```sh
