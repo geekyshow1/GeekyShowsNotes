@@ -7,7 +7,7 @@ This program enables you to improve the security of your MySQL installation in t
 - You can remove the test database (which by default can be accessed by all users, even anonymous users), and privileges that permit anyone to access databases with names that start with test_.
 
 #### What is caching_sha2_password ?
-It is a Plugins that perform authentication using SHA-256 password hashing. This is stronger encryption than that available with native authentication.
+It is a Plugins that perform authentication using SHA-256 password hashing. This is stronger encryption than that available with native authentication. There are some other plugins e.g. mysql_native_password.
 
 - Install MySQL If not Installed
 ```sh
