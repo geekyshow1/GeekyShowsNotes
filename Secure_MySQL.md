@@ -13,6 +13,10 @@ It is a Plugins that perform authentication using SHA-256 password hashing. This
 ```sh
 apt install mysql-server
 ```
+- Login to MySQL
+```sh
+mysql
+```
 - Set Password for Root
 ```sh
 ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password by 'Hello123456#';
@@ -21,7 +25,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password by 'Hello123
 ```sh
 mysql_secure_installation
 ```
-- Login to MySQL with as Root User
+- Login to MySQL as Root User
 ```sh
 mysql -u root -p
 ```
