@@ -1,6 +1,8 @@
 ### How to Install phpmyadmin
 - Install phpMyAdmin and Other Plugins
 ```sh
+apt update
+apt upgrade
 apt install phpmyadmin php-mbstring php-zip php-gd php-json php-curl
 ```
 ```sh
