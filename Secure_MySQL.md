@@ -11,6 +11,8 @@ It is a Plugins that perform authentication using SHA-256 password hashing. This
 
 - Install MySQL If not Installed
 ```sh
+apt update
+apt upgrade
 apt install mysql-server
 ```
 - Login to MySQL
