@@ -6,9 +6,10 @@ Syntax:- ssh -p PORT USERNAME@HOSTIP
 Example:- ssh -p 22 root@216.32.44.12
 ```
 
-- Updates the package lists for Upgrades
+- Updates the package lists for Upgrades then Upgrade
 ```sh
 apt update
+apt upgrade
 ```
 - Install Apache
 ```sh
