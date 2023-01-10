@@ -39,16 +39,17 @@ Note:- You can Copy Complete Project Folder by making it a Zip File then Unzip i
 Syntax:- ssh -p PORT USERNAME@HOSTIP
 Example:- ssh -p 22 root@216.32.44.12
 ```
+- Install zip
+```sh
+apt install zip
+```
 - On VPS or Linux Remote Server Make Your Project Folder a Zip File
 - Zip the Folders and Files
 ```sh
 Syntax:- zip -r zip_filename.zip target_folder_name
 Example:- zip -r mynewproject.zip mynewproject
 ```
-- If Shows Error zip : command not found then Install zip
-```sh
-apt install zip
-```
+
 #### Note:- Run Below Commands on Your Local Windows Machine, Not on Your Remote Server Linux Machine or VPS 
 - Open Command Prompt
 - Copy Zip File from Linux Remote Server to Local Windows Machine
