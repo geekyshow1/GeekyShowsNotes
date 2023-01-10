@@ -45,6 +45,10 @@ Example:- ssh -p 22 root@216.32.44.12
 Syntax:- zip -r zip_filename.zip target_folder_name
 Example:- zip -r mynewproject.zip mynewproject
 ```
+- If Shows Error zip : command not found then Install zip
+```sh
+apt install zip
+```
 #### Note:- Run Below Commands on Your Local Windows Machine, Not on Your Remote Server Linux Machine or VPS 
 - Open Command Prompt
 - Copy Zip File from Linux Remote Server to Local Windows Machine
