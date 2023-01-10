@@ -30,3 +30,27 @@ ls
 Syntax:- unzip zip_file_name
 Example:- unzip osmsProject.zip
 ```
+#
+#
+### How to Copy File from Linux Remote Server or VPS to Windows Local Machine
+Note:- You can Copy Complete Project Folder by making it a Zip File then Unzip it on Local Machine.
+- To Access Remote Server via SSH
+```sh
+Syntax:- ssh -p PORT USERNAME@HOSTIP
+Example:- ssh -p 22 root@216.32.44.12
+```
+- On VPS or Linux Remote Server Make Your Project Folder a Zip File
+- Zip the Project Folder File
+```sh
+Syntax:- zip project_folder_name
+Example:- zip mynewproject.zip
+```
+#### Note:- Run Below Commands on Your Local Windows Machine, Not on Your Remote Server Linux Machine or VPS 
+- Open Command Prompt
+- Copy Zip File from Linux Remote Server to Local Windows Machine
+```sh
+Syntax:- scp -P Port_number Source_File_Path Destination_Path
+Example:- scp -P 22 root@216.32.44.12:/var/www/mynewproject.zip D:\new\
+```
+- Copied Successfully
+
