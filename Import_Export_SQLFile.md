@@ -16,12 +16,12 @@ Example:- USE osmsdb;
 - Import Database or SQL File
 ```sh
 Syntax:- source sql_file_path
-Example:- source /var/www/db/osmsdb.sql
+Example:- source /var/myimporteddb/osmsdb.sql
 ```
 #
 ### How to Export MySQL Database as SQL File
 - Export MySQL Database as SQL File
 ```sh
 Syntax:- mysqldump -u root -p Database_Name > File_Path/File_Name.sql
-Example:- mysqldump -u root -p osmsdb > /var/www/newdb/osmsdb.sql
+Example:- mysqldump -u root -p osmsdb > /var/myexporteddb/dps.sql
 ```
