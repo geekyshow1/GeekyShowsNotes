@@ -40,10 +40,10 @@ Syntax:- ssh -p PORT USERNAME@HOSTIP
 Example:- ssh -p 22 root@216.32.44.12
 ```
 - On VPS or Linux Remote Server Make Your Project Folder a Zip File
-- Zip the Project Folder File
+- Zip the Folders and Files
 ```sh
-Syntax:- zip project_folder_name
-Example:- zip mynewproject.zip
+Syntax:- zip -r zip_filename.zip target_folder_name
+Example:- zip -r mynewproject.zip mynewproject
 ```
 #### Note:- Run Below Commands on Your Local Windows Machine, Not on Your Remote Server Linux Machine or VPS 
 - Open Command Prompt
