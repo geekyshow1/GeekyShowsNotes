@@ -23,5 +23,5 @@ Example:- source /var/myimporteddb/osmsdb.sql
 - Export MySQL Database as SQL File
 ```sh
 Syntax:- mysqldump -u root -p Database_Name > File_Path/File_Name.sql
-Example:- mysqldump -u root -p osmsdb > /var/myexporteddb/dps.sql
+Example:- mysqldump -u root -p dps > /var/myexporteddb/dps.sql
 ```
