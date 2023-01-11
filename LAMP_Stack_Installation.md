@@ -15,8 +15,8 @@ apt upgrade
 ```sh
 apt install apache2
 ```
-- (Optional) If Get Error While Installation cannot stat '/usr/share/apache2/default-site/index.html': No such file or directory
-dpkg: error processing package apache2 (--configure)
+- (Optional) If Get Error While Installation "cannot stat '/usr/share/apache2/default-site/index.html': No such file or directory
+dpkg: error processing package apache2 (--configure)" then Try to Install Again
 ```sh
 apt purge apache2-data
 ```
