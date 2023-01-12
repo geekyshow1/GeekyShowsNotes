@@ -8,7 +8,6 @@ apt install php-cli unzip
 ```
 - Download and Install Composer
 ```sh
-cd ~
 curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
 php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 ```
