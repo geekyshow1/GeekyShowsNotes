@@ -1,4 +1,4 @@
-### How to Point Domain and Host Laravel Project on Remote Server or VPS
+### How to Point Domain and Host Laravel Project on Apache Web Server VPS Hosting
 
 - Login to Your Domain Provider Website
 - Navigate to Manage DNS
