@@ -11,6 +11,7 @@
 | AAAA  | @     | Your Remote Server IPv6 |
 | AAAA  | www   | Your Remote Server IPv6 |
 
+- Important: If your project have user uploaded files and you have create symbolic link then Delete the storage folder which is inside your-project-folder/public/ Because It will not work on Live Server. You will have to create symbolic link again on live server.
 - On Local Windows Machine Make Your Project Folder a Zip File using any of the software e.g. winzip
 - Open Command Prompt
 - Copy Zip File from Local Windows Machine to Linux Remote Server
@@ -67,6 +68,11 @@ nano /etc/apache2/sites-available/your_domain.conf
     DocumentRoot /var/www/project_folder_name/public
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
+    <Directory /var/www/project_folder_nam/public/>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
 </VirtualHost>
 ```
 - Enable Virtual Host
@@ -74,16 +80,34 @@ nano /etc/apache2/sites-available/your_domain.conf
 cd /etc/apache2/sites-available/
 a2ensite your_domain.conf
 ```
-- You can Disable Default Virtual Host
-```sh
-cd /etc/apache2/sites-available/
-a2dissite 000-default.conf
-```
 - Restart Apache2
 ```sh
 service apache2 restart
 ```
-#### Go to Your Project Directory then run below artisan command
+- Open Mysql
+- Create Database User (Optional)
+- Create Database
+
+#### Go to Your Project Directory then follow below instructions:
+- Open .env File then write below changes
+- Important: Write DB User, DB User Password and DB Name in .env File, You may have to write DB User and DB Password enclosed with single quote
+```sh
+APP_NAME=Laravel
+APP_ENV=production
+APP_KEY=you_can_generate_it_php_artisan_key:generate
+APP_DEBUG=false
+APP_URL=http://your-domain.com/
+
+LOG_CHANNEL=stack
+LOG_LEVEL=debug
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=database_name
+DB_USERNAME='db_user_name'
+DB_PASSWORD='db_user_password'
+```
 - Generate Application Key
 ```sh
 php artisan key:generate
@@ -93,10 +117,33 @@ php artisan key:generate
 composer install --optimize-autoloader --no-dev
 ```
 - Set Permission for storage and bootstrap/cache Folder
+- Make Webserver as owner for storage and bootstrap/cache. Our Webserver is running as www-data and group is also www-data.
 ```sh
-chmod -R 777 storage
-chmod -R 777 bootstrap/cache
+sudo chown -R www-data:www-data storage
+sudo chown -R www-data:www-data bootstrap/cache
 ```
+- You may face problem if you work with FTP so to fix this add your user to webserver user group following below instruction:
+- Check Your User Group
+```sh
+sudo groups raj
+```
+- Add your User to webserver group
+```sh
+sudo usermod -a -G www-data raj
+```
+- Verify Your User is in Webserver Group
+```sh
+sudo groups raj
+```
+- Set storage's File Permission to 644
+```sh
+sudo find storage -type f -exec chmod 644 {} \;
+```
+- Set storage's Folder Permission to 755
+```sh
+sudo find storage -type d -exec chmod 755 {} \;
+```
+- Done
 - Create Symbolic Link at public/storage which points to the storage/app/public directory.
 ```sh
 php artisan storage:link
@@ -106,7 +153,6 @@ php artisan storage:link
 php artisan cache:clear
 php artisan config:clear
 ```
-- Create Database
 - Create Database Tables
 ```sh
 php artisan migrate
