@@ -84,10 +84,6 @@ a2dissite 000-default.conf
 service apache2 restart
 ```
 #### Go to Your Project Directory then run below artisan command
-- Clearing cache
-```sh
-php artisan cache:clear
-```
 - Generate Application Key
 ```sh
 php artisan key:generate
@@ -101,14 +97,19 @@ composer install --optimize-autoloader --no-dev
 chmod -R 777 storage
 chmod -R 777 bootstrap/cache
 ```
+- Create Symbolic Link at public/storage which points to the storage/app/public directory.
+```sh
+php artisan storage:link
+```
+- Clearing cache
+```sh
+php artisan cache:clear
+php artisan config:clear
+```
 - Create Database
 - Create Database Tables
 ```sh
 php artisan migrate
-```
-- Create Symbolic Link at public/storage which points to the storage/app/public directory.
-```sh
-php artisan storage:link
 ```
 - Cache routes, config and views (Optional)
 ```sh
