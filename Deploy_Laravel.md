@@ -64,7 +64,7 @@ nano /etc/apache2/sites-available/your_domain.conf
 <VirtualHost *:80>
     ServerName www.example.com
     ServerAdmin contact@example.com
-    DocumentRoot /var/www/project_folder_name
+    DocumentRoot /var/www/project_folder_name/public
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
