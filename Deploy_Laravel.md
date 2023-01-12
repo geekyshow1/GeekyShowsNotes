@@ -45,6 +45,7 @@ Example:- unzip osmsProject.zip
 apache2 -v
 mysql
 php -v
+composer -v
 ```
 - Verify Apache2 is Active and Running
 ```sh
@@ -93,12 +94,12 @@ php artisan key:generate
 ```
 - Install Dependencies
 ```sh
-composer install -- optimize-autoloader -- no-dev
+composer install --optimize-autoloader --no-dev
 ```
 - Set Permission for storage and bootstrap/cache Folder
 ```sh
-chmod -R o+w storage
-chmod -R o+w bootstrap/cache
+chmod -R 777 storage
+chmod -R 777 bootstrap/cache
 ```
 - Create Database
 - Create Database Tables
