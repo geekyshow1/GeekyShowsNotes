@@ -1,5 +1,5 @@
 ### How to Point Domain and Host Laravel Project on Apache Web Server VPS Hosting
-
+##### Note - If you get Permission Denied Please use sudo
 - Login to Your Domain Provider Website
 - Navigate to Manage DNS
 - Add Following Records:
@@ -80,34 +80,16 @@ nano /etc/apache2/sites-available/your_domain.conf
 cd /etc/apache2/sites-available/
 a2ensite your_domain.conf
 ```
+- Enable the Apache mod_rewrite module
+```sh
+a2enmod rewrite
+```
 - Restart Apache2
 ```sh
 service apache2 restart
 ```
-- Open Mysql
-- Create Database User (Optional)
-- Create Database
-
 #### Go to Your Project Directory then follow below instructions:
-- Open .env File then write below changes
-- Important: Write DB User, DB User Password and DB Name in .env File, You may have to write DB User and DB Password enclosed with single quote
-```sh
-APP_NAME=Laravel
-APP_ENV=production
-APP_KEY=you_can_generate_it_php_artisan_key:generate
-APP_DEBUG=false
-APP_URL=http://your-domain.com/
-
-LOG_CHANNEL=stack
-LOG_LEVEL=debug
-
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=database_name
-DB_USERNAME='db_user_name'
-DB_PASSWORD='db_user_password'
-```
+##### Note - If you get Permission Denied Please use sudo
 - Generate Application Key
 ```sh
 php artisan key:generate
@@ -144,18 +126,43 @@ sudo find storage -type f -exec chmod 644 {} \;
 sudo find storage -type d -exec chmod 755 {} \;
 ```
 - Done
-- Create Symbolic Link at public/storage which points to the storage/app/public directory.
+- Open Mysql
+- Create Database User (Optional)
+- Create Database
+- Open .env File
 ```sh
-php artisan storage:link
+sudo nano .env
 ```
-- Clearing cache
+- Make below changes, Important: Write DB User, DB User Password and DB Name in .env File, You may have to write DB User and DB Password enclosed with single quote
 ```sh
-php artisan cache:clear
-php artisan config:clear
+APP_NAME=Laravel
+APP_ENV=production
+APP_KEY=you_can_generate_it_php_artisan_key:generate
+APP_DEBUG=false
+APP_URL=http://your-domain.com/
+
+LOG_CHANNEL=stack
+LOG_LEVEL=debug
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=database_name
+DB_USERNAME='db_user_name'
+DB_PASSWORD='db_user_password'
 ```
 - Create Database Tables
 ```sh
 php artisan migrate
+```
+- Create Symbolic Link at public/storage which points to the storage/app/public directory.
+```sh
+php artisan storage:link
+```
+- Clearing cache - You may need to run with sudo
+```sh
+php artisan cache:clear
+php artisan config:clear
 ```
 - Cache routes, config and views (Optional)
 ```sh
