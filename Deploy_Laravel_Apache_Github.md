@@ -195,12 +195,6 @@ php artisan config:clear
 ```sh
 git pull
 ```
-- Cache routes, config and views (Optional)
-```sh
-php artisan route:cache
-php artisan config:cache
-php artisan view:cache
-```
 - If you ever need to work on your project you can switch ON/OFF Maintenance mode 
 ```sh
 php artisan down
@@ -210,7 +204,7 @@ php artisan up
 ### How to Automate Laravel Deployment using Github Action
 - On Your Local Machine, Open Your Project using VS Code or any Editor
 - Create A Folder named .scripts inside your root project folder e.g. miniblog/.scripts
-- Inside .scripts folder Create A file with .sh extension e.g. miniblog/.scripts/miniblog_deployer.sh
+- Inside .scripts folder Create A file with .sh extension e.g. miniblog/.scripts/deploy.sh
 - Write below script inside the created .sh file
 ```sh
 #!/bin/bash
@@ -243,35 +237,10 @@ php artisan up
 
 echo "Deployment finished!"
 ```
-- Go to Your Github Repo Click on Settings
-- Click on Secrets and Variables from the Sidebar then choose Actions
-- On Secret Tab, Click on New Repository Secret
-- Add Four Secrets HOST, PORT, SSHKEY and USERNAME as below
+- Go inside .scripts Folder then Set File Permission for .sh File
 ```sh
-Name: HOST
-Secret: Your_Server_IP
+git update-index --add --chmod=+x deploy.sh
 ```
-```sh
-Name: PORT
-Secret: Your_Server_PORT
-```
-```sh
-Name: SSHKEY
-Secret: Private_SSH_KEY_Generated_On_Server
-```
-- You can get Private SSH Key Generated on Server by loging into your server via ssh then run below command
-```sh
-cat ~/.ssh/id_ed25519
-```
-```sh
-Name: USERNAME
-Secret: Your_Server_User_Name
-```
-- You can get Server User Name by loging into your server via ssh then run below command
-```sh
-whoami
-```
-- On Your Local Machine, Open Your Project using VS Code or any Editor
 - Create Directory Path named .github/workflows inside your root project folder e.g. miniblog/.github/workflows
 - Inside workflows folder Create A file with .yml extension e.g. miniblog/.github/workflows/deploy.yml
 - Write below script inside the created .yml file
@@ -302,6 +271,35 @@ jobs:
           key: ${{ secrets.SSHKEY }}
           script: "cd /var/www/miniblog && ./.scripts/deploy.sh"
 ```
+- Go to Your Github Repo Click on Settings
+- Click on Secrets and Variables from the Sidebar then choose Actions
+- On Secret Tab, Click on New Repository Secret
+- Add Four Secrets HOST, PORT, SSHKEY and USERNAME as below
+```sh
+Name: HOST
+Secret: Your_Server_IP
+```
+```sh
+Name: PORT
+Secret: Your_Server_PORT
+```
+```sh
+Name: USERNAME
+Secret: Your_Server_User_Name
+```
+- You can get Server User Name by loging into your server via ssh then run below command
+```sh
+whoami
+```
+```sh
+Name: SSHKEY
+Secret: Private_SSH_KEY_Generated_On_Server
+```
+- You can get Private SSH Key Generated on Server by loging into your server via ssh then run below command
+```sh
+cat ~/.ssh/id_ed25519
+```
+
 - Commit and Push the change to Your Github Repo
 - Get Access to Remote Server via SSH
 ```sh
