@@ -38,11 +38,16 @@ ufw status verbose
 - Make Connection between Remote Server and Github via SSH Key
 - Generate SSH Keys
 ```sh
-ssh-keygen -t rsa -b 4096 -C "miniblog_github"
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+- If Permission Denied then Own .ssh then try again to Generate SSH Keys
+```sh
+Syntax:- sudo chown -R user_name .ssh
+Example:- sudo chown -R raj .ssh
 ```
 - Open Public SSH Keys then copy the key
 ```sh
-cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/id_ed25519.pub
 ```
 - Go to Your Github Repo
 - Click on Settings Tab
@@ -51,11 +56,10 @@ cat ~/.ssh/id_rsa.pub
 - Verify the Connection, Go to Your Server Terminal then run below
 ```sh
 ssh -T git@github.com
+// OR
+ssh -vT git@github.com
 ```
-- Go to the Web Server public directory
-```sh
-cd /var/www
-```
+- You may get an error git@github.com: Permission denied (publickey) If you will try to clone it directly on Web Server Public Folder /var/www So we will clone github repo in User's Home Directory then Move it to Web server Public Directory
 - Clone Project from your github account
 ```sh
 - Using HTTPS Path It doesnt require to setup SSH Key on Github
@@ -69,6 +73,11 @@ Example:- git@github.com:geekyshow1/miniblog.git
 - Run ls command to verify that the project is present
 ```sh
 ls
+```
+- Move Project Folder to Web Server public directory
+```sh
+Syntax:- sudo mv project_folder_name /var/www
+Example:- sudo mv miniblog /var/www
 ```
 - Create Virtual Host File
 ```sh
@@ -255,7 +264,7 @@ Secret: Private_SSH_KEY_Generated_On_Server
 ```
 - You can get Private SSH Key Generated on Server by loging into your server via ssh then run below command
 ```sh
-cat ~/.ssh/id_rsa
+cat ~/.ssh/id_ed25519
 ```
 ```sh
 Name: USERNAME
