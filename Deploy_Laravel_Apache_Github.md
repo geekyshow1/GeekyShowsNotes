@@ -59,7 +59,7 @@ ssh -T git@github.com
 // OR
 ssh -vT git@github.com
 ```
-- You may get an error git@github.com: Permission denied (publickey) If you will try to clone it directly on Web Server Public Folder /var/www So we will clone github repo in User's Home Directory then Move it to Web server Public Directory
+- You may get an error git @ github.com: Permission denied (publickey) If you will try to clone it directly on Web Server Public Folder /var/www So we will clone github repo in User's Home Directory then Move it to Web server Public Directory
 - Clone Project from your github account
 ```sh
 - Using HTTPS Path It doesnt require to setup SSH Key on Github
