@@ -198,3 +198,118 @@ php artisan down
 php artisan up
 ```
 
+#### How to Automate Laravel Deployment using Github Action
+- On Your Local Machine, Open Your Project using VS Code or any Editor
+- Create A Folder named .scripts inside your root project folder e.g. miniblog/.scripts
+- Inside .scripts folder Create A file with .sh extension e.g. miniblog/.scripts/miniblog_deployer.sh
+- Write below script inside the created .sh file
+```sh
+#!/bin/bash
+set -e
+
+echo "Deployment started ..."
+
+# Turn ON Maintenance Mode or return true
+# if already is in maintenance mode
+(php artisan down) || true
+
+# Pull the latest version of the app
+git pull origin master
+
+# Install composer dependencies
+composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+# Clearing Cache
+php artisan cache:clear
+php artisan config:clear
+
+# Recreate cache
+php artisan optimize
+
+# Compile npm assets
+npm run prod
+
+# Run database migrations
+php artisan migrate --force
+
+# Turn OFF Maintenance mode
+php artisan up
+
+echo "Deployment finished!"
+```
+- Go to Your Github Repo Click on Settings
+- Click on Secrets and Variables from the Sidebar then choose Actions
+- On Secret Tab, Click on New Repository Secret
+- Add Four Secrets HOST, PORT, SSHKEY and USERNAME as below
+```sh
+Name: HOST
+Secret: Your_Server_IP
+```
+```sh
+Name: PORT
+Secret: Your_Server_PORT
+```
+```sh
+Name: SSHKEY
+Secret: Private_SSH_KEY_Generated_On_Server
+```
+- You can get Private SSH Key Generated on Server by loging into your server via ssh then run below command
+```sh
+cat ~/.ssh/id_rsa
+```
+```sh
+Name: USERNAME
+Secret: Your_Server_User_Name
+```
+- You can get Server User Name by loging into your server via ssh then run below command
+```sh
+whoami
+```
+- On Your Local Machine, Open Your Project using VS Code or any Editor
+- Create Directory Path named .github/workflows inside your root project folder e.g. miniblog/.github/workflows
+- Inside workflows folder Create A file with .yml extension e.g. miniblog/.github/workflows/miniblog_deployer.yml
+- Write below script inside the created .yml file
+```sh
+name: Miniblog_deployer
+
+# Trigger the workflow on push and 
+# pull request events on the master branch
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+      
+# Authenticate to the the server via ssh 
+# and run our deployment script 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          key: ${{ secrets.SSHKEY }}
+          script: "cd /var/www/miniblog && ./.scripts/miniblog_deployer.sh"
+```
+- Commit and Push the change to Your Github Repo
+- Get Access to Remote Server via SSH
+```sh
+Syntax:- ssh -p PORT USERNAME@HOSTIP
+Example:- ssh -p 22 root@216.32.44.12
+```
+- Go to Your Project Directory
+```sh
+Syntax:- cd /var/www/project_folder_name
+Example:- cd /var/www/miniblog
+```
+- Pull the changes from github
+```sh
+git pull
+```
+- Your Deployment should become automate. 
+
