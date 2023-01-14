@@ -22,6 +22,6 @@ Example:- source /var/myimporteddb/osmsdb.sql
 ### How to Export MySQL Database as SQL File
 - Export MySQL Database as SQL File
 ```sh
-Syntax:- mysqldump -u root -p Database_Name > File_Path/File_Name.sql
+Syntax:- mysqldump -u db_user_name -p Database_Name > File_Path/File_Name.sql
 Example:- mysqldump -u root -p dps > /var/myexporteddb/dps.sql
 ```
