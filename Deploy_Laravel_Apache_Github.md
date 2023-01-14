@@ -324,5 +324,13 @@ Example:- cd /var/www/miniblog
 ```sh
 git pull
 ```
-- Your Deployment should become automate. 
-
+- Your Deployment should become automate.
+- On Local Machine make some changes in Your Project then Commit and Push to Github Repo It will automatically deployed on Live Server
+- You can track your action from Github Actions Tab
+- If you get any File Permission error in the action then you have to change file permission accordingly e.g. Maintenance mode ON/OFF may need File Permission so you can set it to 775
+- Changing storage/framework File Permission (This is just for example)
+```sh
+cd /var/www/miniblog/storage
+sudo chmod -R 775 framework
+```
+- All Done
