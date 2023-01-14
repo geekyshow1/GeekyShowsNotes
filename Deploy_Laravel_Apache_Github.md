@@ -274,7 +274,7 @@ jobs:
 - Go to Your Github Repo Click on Settings
 - Click on Secrets and Variables from the Sidebar then choose Actions
 - On Secret Tab, Click on New Repository Secret
-- Add Four Secrets HOST, PORT, SSHKEY and USERNAME as below
+- Add Four Secrets HOST, PORT, USERNAME and SSHKEY as below
 ```sh
 Name: HOST
 Secret: Your_Server_IP
@@ -291,15 +291,24 @@ Secret: Your_Server_User_Name
 ```sh
 whoami
 ```
+- Generate SSH Key for Github Action by Login into Remote Server then run below Command OR You can use old SSH Key But I am creating New one for Github Action
+```sh
+Syntax:- ssh-keygen -f key_path -t ed25519 -C "your_email@example.com"
+Example:- ssh-keygen -f /home/raj/gitaction_ed25519 -t ed25519 -C "gitactionautodep"
+```
+- Open Newly Created Public SSH Keys then copy the key
+```sh
+cat ~/.ssh/gitaction_ed25519.pub
+```
+- Open authorized_keys File which is inside .ssh/authroized_keys then paste the copied key in a new line
+- Open Newly Created Private SSH Keys then copy the key, we will use this key to add New Repository Secret On Github Repo
+```sh
+cat ~/.ssh/gitaction_ed25519
+```
 ```sh
 Name: SSHKEY
 Secret: Private_SSH_KEY_Generated_On_Server
 ```
-- You can get Private SSH Key Generated on Server by loging into your server via ssh then run below command
-```sh
-cat ~/.ssh/id_ed25519
-```
-
 - Commit and Push the change to Your Github Repo
 - Get Access to Remote Server via SSH
 ```sh
