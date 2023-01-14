@@ -207,7 +207,7 @@ php artisan down
 php artisan up
 ```
 
-#### How to Automate Laravel Deployment using Github Action
+### How to Automate Laravel Deployment using Github Action
 - On Your Local Machine, Open Your Project using VS Code or any Editor
 - Create A Folder named .scripts inside your root project folder e.g. miniblog/.scripts
 - Inside .scripts folder Create A file with .sh extension e.g. miniblog/.scripts/miniblog_deployer.sh
@@ -226,7 +226,7 @@ echo "Deployment started ..."
 git pull origin master
 
 # Install composer dependencies
-composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+composer install --optimize-autoloader --no-dev --no-interaction
 
 # Clearing Cache
 php artisan cache:clear
@@ -234,9 +234,6 @@ php artisan config:clear
 
 # Recreate cache
 php artisan optimize
-
-# Compile npm assets
-npm run prod
 
 # Run database migrations
 php artisan migrate --force
@@ -276,21 +273,21 @@ whoami
 ```
 - On Your Local Machine, Open Your Project using VS Code or any Editor
 - Create Directory Path named .github/workflows inside your root project folder e.g. miniblog/.github/workflows
-- Inside workflows folder Create A file with .yml extension e.g. miniblog/.github/workflows/miniblog_deployer.yml
+- Inside workflows folder Create A file with .yml extension e.g. miniblog/.github/workflows/deploy.yml
 - Write below script inside the created .yml file
 ```sh
-name: Miniblog_deployer
+name: Deploy
 
-# Trigger the workflow on push and 
+# Trigger the workflow on push and
 # pull request events on the master branch
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
-      
-# Authenticate to the the server via ssh 
-# and run our deployment script 
+    branches: ["master"]
+
+# Authenticate to the the server via ssh
+# and run our deployment script
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -303,7 +300,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          script: "cd /var/www/miniblog && ./.scripts/miniblog_deployer.sh"
+          script: "cd /var/www/miniblog && ./.scripts/deploy.sh"
 ```
 - Commit and Push the change to Your Github Repo
 - Get Access to Remote Server via SSH
