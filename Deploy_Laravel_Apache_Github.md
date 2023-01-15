@@ -301,7 +301,7 @@ Example:- ssh-keygen -f /home/raj/.ssh/gitaction_ed25519 -t ed25519 -C "gitactio
 cat ~/.ssh/gitaction_ed25519.pub
 ```
 - Open authorized_keys File which is inside .ssh/authroized_keys then paste the copied key in a new line
-- ```sh
+```sh
 cd .ssh
 nano authorized_keys
 ```
