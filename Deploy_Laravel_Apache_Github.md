@@ -68,7 +68,7 @@ Example:- git clone https://github.com/geekyshow1/miniblog.git
 
 - Using SSH Path It requires to setup SSH Key on Github
 Syntax:- git clone ssh_repo_path
-Example:- git@github.com:geekyshow1/miniblog.git
+Example:- git clone git@github.com:geekyshow1/miniblog.git
 ```
 - Run ls command to verify that the project is present
 ```sh
