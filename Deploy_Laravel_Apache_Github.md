@@ -294,7 +294,7 @@ whoami
 - Generate SSH Key for Github Action by Login into Remote Server then run below Command OR You can use old SSH Key But I am creating New one for Github Action
 ```sh
 Syntax:- ssh-keygen -f key_path -t ed25519 -C "your_email@example.com"
-Example:- ssh-keygen -f /home/raj/gitaction_ed25519 -t ed25519 -C "gitactionautodep"
+Example:- ssh-keygen -f /home/raj/.ssh/gitaction_ed25519 -t ed25519 -C "gitactionautodep"
 ```
 - Open Newly Created Public SSH Keys then copy the key
 ```sh
