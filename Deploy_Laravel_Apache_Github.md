@@ -301,6 +301,10 @@ Example:- ssh-keygen -f /home/raj/.ssh/gitaction_ed25519 -t ed25519 -C "gitactio
 cat ~/.ssh/gitaction_ed25519.pub
 ```
 - Open authorized_keys File which is inside .ssh/authroized_keys then paste the copied key in a new line
+- ```sh
+cd .ssh
+nano authorized_keys
+```
 - Open Newly Created Private SSH Keys then copy the key, we will use this key to add New Repository Secret On Github Repo
 ```sh
 cat ~/.ssh/gitaction_ed25519
