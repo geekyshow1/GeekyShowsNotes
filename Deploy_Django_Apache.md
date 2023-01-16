@@ -194,9 +194,13 @@ sudo nano apache2.conf
 WSGIApplicationGroup %{GLOBAL}
 ```
 - To Know more about %{GLOBAL} follow this link: https://modwsgi.readthedocs.io/en/develop/configuration-directives/WSGIApplicationGroup.html
-
+- Restart Apache2
+```sh
+sudo service apache2 restart
+```
 - Serve Static Files
 ```sh
+cd /var/www/miniblog
 python manage.py collectstatic
 ```
 - Create Database Tables
