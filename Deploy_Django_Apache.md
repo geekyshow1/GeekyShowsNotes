@@ -10,14 +10,26 @@
 | AAAA  | @     | Your Remote Server IPv6 |
 | AAAA  | www   | Your Remote Server IPv6 |
 
-- On Local Windows Machine, Goto Your Project Folder then create follow below instruction:
+- On Local Windows Machine, Goto Your Project Folder then follow below instruction:
+- Create a folder in your root project directory then move database file inside this created directory e.g. mndb/db.sqlite3
+- Open settings.py file then change sqlite db file path as it is now inside folder
 ```sh
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'mbdb/db.sqlite3',
+    }
+}
+```
+- Save and Close settings.py file
 - Open Terminal
 - Activate Your virtual Env
 - Create requirements.txt File
+```sh
   pip freeze > requirements.txt
-- Deactivate Virtual Env
 ```
+- Deactivate Virtual Env
+
 - On Local Windows Machine Make Your Project Folder a Zip File using any of the software e.g. winzip
 - Open Command Prompt
 - Copy Zip File from Local Windows Machine to Linux Remote Server
@@ -192,17 +204,21 @@ python manage.py collectstatic
 python manage.py makemigrations
 python manage.py migrate
 ```
-- Set Permission for database file, media file and bootstrap/cache Folder
-- Make Webserver as owner for database file, media and bootstrap/cache. Our Webserver is running as www-data and group is also www-data.
+- If Database File throws error Permission Denied then Set below permissions
+- Make Webserver as owner for database file. Our Webserver is running as www-data and group is also www-data.
 ```sh
 Syntax:- 
-sudo chown -R www-data:www-data project_folder_name
-sudo chown -R www-data:www-data database_file_name
-sudo chown -R www-data:www-data media_folder_name
+sudo chown -R www-data:www-data database_folder
+sudo chmod 775 database_folder
+sudo chmod 664 database_folder/database_file
 
 Example:-
-sudo chown -R www-data:www-data miniblog
-sudo chown -R www-data:www-data db.sqlite3
+sudo chown -R www-data:www-data mbdb
+sudo chmod 775 mbdb
+sudo chmod 664 mbdb/db.sqlite3
+```
+- If Media Files (User Uploaded Files) throws error Permission Denied then Set below permissions
+```sh
 sudo chown -R www-data:www-data media
 ```
 - You may face problem if you work with FTP so to fix this add your user to webserver user group following below instruction:
@@ -218,11 +234,6 @@ sudo usermod -a -G www-data raj
 ```sh
 sudo groups raj
 ```
-- Set SQLite DB File Permission to 664
-```sh
-sudo chmod 664 db.sqlite3
-```
-- Done
 - If needed Deactivate Virtual env
 ```sh
 deactivate
