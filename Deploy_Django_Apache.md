@@ -208,6 +208,10 @@ python manage.py collectstatic
 python manage.py makemigrations
 python manage.py migrate
 ```
+- Create Superuser
+```sh
+python manage.py createsuperuser
+```
 - If Database File throws error Permission Denied then Set below permissions
 - Make Webserver as owner for database file. Our Webserver is running as www-data and group is also www-data.
 ```sh
