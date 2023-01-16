@@ -150,6 +150,7 @@ sudo nano settings.py
 - Make below changes
 ```sh
 ALLOWED_HOST = ["your_domain"]
+DEBUG = False
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_URL = '/media/'
@@ -159,29 +160,16 @@ MEDIA_ROOT = BASE_DIR / 'media'
 ```sh
 sudo service apache2 restart
 ```
-- Serve Static Files
-```sh
-python manage.py collectstatic
-```
-- Clearing cache - You may need to run with sudo
-```sh
-python manage.py clear_cache
-```
-- Create Database Tables
-```sh
-python manage.py makemigrations
-python manage.py migrate
-```
-- If needed Deactivate Virtual env
-```sh
-deactivate
-```
 - You can check error logs If you get any error:
 ```sh
 cd /var/log
 su
 cd apache2
 cat error.log
+```
+- You can Clear Error Logs (Optional)
+```sh
+sudo bash -c 'echo > /var/log/apache2/error.log'
 ```
 - If get Error mod_wsgi (pid=1234): Failed to proxy response from daemon then follow below instructions:
 - Open apache2.conf
@@ -194,4 +182,49 @@ sudo nano apache2.conf
 WSGIApplicationGroup %{GLOBAL}
 ```
 - To Know more about %{GLOBAL} follow this link: https://modwsgi.readthedocs.io/en/develop/configuration-directives/WSGIApplicationGroup.html
+
+- Serve Static Files
+```sh
+python manage.py collectstatic
+```
+- Create Database Tables
+```sh
+python manage.py makemigrations
+python manage.py migrate
+```
+- Set Permission for database file, media file and bootstrap/cache Folder
+- Make Webserver as owner for database file, media and bootstrap/cache. Our Webserver is running as www-data and group is also www-data.
+```sh
+Syntax:- 
+sudo chown -R www-data:www-data project_folder_name
+sudo chown -R www-data:www-data database_file_name
+sudo chown -R www-data:www-data media_folder_name
+
+Example:-
+sudo chown -R www-data:www-data miniblog
+sudo chown -R www-data:www-data db.sqlite3
+sudo chown -R www-data:www-data media
+```
+- You may face problem if you work with FTP so to fix this add your user to webserver user group following below instruction:
+- Check Your User Group
+```sh
+sudo groups raj
+```
+- Add your User to webserver group
+```sh
+sudo usermod -a -G www-data raj
+```
+- Verify Your User is in Webserver Group
+```sh
+sudo groups raj
+```
+- Set SQLite DB File Permission to 664
+```sh
+sudo chmod 664 db.sqlite3
+```
+- Done
+- If needed Deactivate Virtual env
+```sh
+deactivate
+```
 
