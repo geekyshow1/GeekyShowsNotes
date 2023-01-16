@@ -96,7 +96,7 @@ nano /etc/apache2/sites-available/your_domain.conf
     <Directory /var/www/project_folder_name/media>
         Require all granted
     </Directory>
-    <Direcoty /var/www/project_folder_name>
+    <Direcoty /var/www/project_folder_name/Inner_project_folder_name>
         <Files wsgi.py>
             Require all granted
         </Files>
