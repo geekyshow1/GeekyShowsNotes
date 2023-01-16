@@ -96,11 +96,11 @@ nano /etc/apache2/sites-available/your_domain.conf
     <Directory /var/www/project_folder_name/media>
         Require all granted
     </Directory>
-    <Direcoty /var/www/project_folder_name/Inner_project_folder_name>
+    <Directory /var/www/project_folder_name/Inner_project_folder_name>
         <Files wsgi.py>
             Require all granted
         </Files>
-    </Direcotry>
+    </Directory>
     WSGIDaemonProcess project_folder_name python-home=/var/www/project_folder_name/myprojectenv python-path=/var/www/project_folder_name
     WSGIProcessGroup project_folder_name
     WSGIScriptAlias /  /var/www/project_folder_name/inner_project_folder_name/wsgi.py
