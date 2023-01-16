@@ -33,20 +33,6 @@ Syntax:- ssh -p PORT USERNAME@HOSTIP
 Example:- ssh -p 22 raj@216.32.44.12
 ```
 #### Note:- Run Below Commands on Your Remote Server Linux Machine or VPS, Not on Your Local Windows Machine
-- Run ls command to verify that the zip file is present
-```sh
-ls
-```
-- Unzip the Copied Zip File
-```sh
-Syntax:- unzip zip_file_name
-Example:- unzip miniblog.zip
-```
-- Move Project Folder from User Home to Web Server Public Directory
-```sh
-Syntax:- sudo mv project_folder_name Destination_Path
-Example:- sudo mv miniblog /var/www
-```
 - Verify that all required softwares are installed
 ```sh
   apache2 -v
@@ -70,53 +56,31 @@ sudo pip install virtualenv
 ```
 - Verify Apache2 is Active and Running
 ```sh
-service apache2 status
+sudo service apache2 status
 ```
 - Verify Web Server Ports are Open and Allowed through Firewall
 ```sh
-ufw status verbose
+sudo ufw status verbose
 ```
-- Create Virtual Host File
+- Run ls command to verify that the zip file is present
 ```sh
-nano /etc/apache2/sites-available/your_domain.conf
+ls
 ```
-- Add Following Code in Virtual Host File
+- Unzip the Copied Zip File
 ```sh
-<VirtualHost *:80>
-    ServerName www.example.com
-    ServerAdmin contact@example.com
-    DocumentRoot /var/www/project_folder_name/public
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-    Alias /static /var/www/project_folder_name/static
-    <Directory /var/www/project_folder_name/static>
-        Require all granted
-    </Directory>
-    Alias /media /var/www/project_folder_name/media
-    <Directory /var/www/project_folder_name/media>
-        Require all granted
-    </Directory>
-    <Directory /var/www/project_folder_name/Inner_project_folder_name>
-        <Files wsgi.py>
-            Require all granted
-        </Files>
-    </Directory>
-    WSGIDaemonProcess project_folder_name python-home=/var/www/project_folder_name/myprojectenv python-path=/var/www/project_folder_name
-    WSGIProcessGroup project_folder_name
-    WSGIScriptAlias /  /var/www/project_folder_name/inner_project_folder_name/wsgi.py
-</VirtualHost>
+Syntax:- unzip zip_file_name
+Example:- unzip miniblog.zip
 ```
-- Enable Virtual Host
+- Move Project Folder from User Home to Web Server Public Directory
 ```sh
-cd /etc/apache2/sites-available/
-a2ensite your_domain.conf
+Syntax:- sudo mv project_folder_name Destination_Path
+Example:- sudo mv miniblog /var/www
 ```
-- Restart Apache2
+- Go to Your Project Directory
 ```sh
-service apache2 restart
+Syntax:- cd /var/www/project_folder_name
+Example:- cd /var/www/miniblog
 ```
-#### Go to Your Project Directory then follow below instructions:
-##### Note - If you get Permission Denied Please use sudo
 - Create Virtual env
 ```sh
 Syntax:- virtualenv env_name
@@ -131,37 +95,56 @@ Example:- source mb/bin/activate
 ```sh
 pip install -r requirements.txt
 ```
-- Set Permission for storage and bootstrap/cache Folder
-- Make Webserver as owner for storage and bootstrap/cache. Our Webserver is running as www-data and group is also www-data.
+- Create Virtual Host File
 ```sh
-sudo chown -R www-data:www-data storage
-sudo chown -R www-data:www-data bootstrap/cache
+sudo nano /etc/apache2/sites-available/your_domain.conf
 ```
-- You may face problem if you work with FTP so to fix this add your user to webserver user group following below instruction:
-- Check Your User Group
+- Add Following Code in Virtual Host File
 ```sh
-sudo groups raj
+<VirtualHost *:80>
+    ServerName www.example.com
+    ServerAdmin contact@example.com
+    DocumentRoot /var/www/project_folder_name/public
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+    
+    Alias /static /var/www/project_folder_name/static
+    <Directory /var/www/project_folder_name/static>
+        Require all granted
+    </Directory>
+    
+    Alias /media /var/www/project_folder_name/media
+    <Directory /var/www/project_folder_name/media>
+        Require all granted
+    </Directory>
+    
+    <Directory /var/www/project_folder_name/Inner_project_folder_name>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+    
+    WSGIDaemonProcess project_folder_name python-home=/var/www/project_folder_name/myprojectenv python-path=/var/www/project_folder_name
+    WSGIProcessGroup project_folder_name
+    WSGIScriptAlias /  /var/www/project_folder_name/inner_project_folder_name/wsgi.py
+</VirtualHost>
 ```
-- Add your User to webserver group
+- Check Configuration is correct or not
 ```sh
-sudo usermod -a -G www-data raj
+sudo apache2ctl configtest
 ```
-- Verify Your User is in Webserver Group
+- Enable Virtual Host
 ```sh
-sudo groups raj
+cd /etc/apache2/sites-available/
+sudo a2ensite your_domain.conf
 ```
-- Set storage's File Permission to 644
+- Restart Apache2
 ```sh
-sudo find storage -type f -exec chmod 644 {} \;
+sudo service apache2 restart
 ```
-- Set storage's Folder Permission to 755
+- Open Django Project settings.py
 ```sh
-sudo find storage -type d -exec chmod 755 {} \;
-```
-- Done
-- Open Your_Inner_Project_Folder/settings.py File
-```sh
-cd miniblog
+cd /var/www/miniblog/miniblog
 sudo nano settings.py
 ```
 - Make below changes
@@ -172,6 +155,14 @@ STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 ```
+- Restart Apache2
+```sh
+sudo service apache2 restart
+```
+- Serve Static Files
+```sh
+python manage.py collectstatic
+```
 - Clearing cache - You may need to run with sudo
 ```sh
 python manage.py clear_cache
@@ -180,10 +171,6 @@ python manage.py clear_cache
 ```sh
 python manage.py makemigrations
 python manage.py migrate
-```
-- Serve Static Files
-```sh
-python manage.py collectstatic
 ```
 - If needed Deactivate Virtual env
 ```sh
