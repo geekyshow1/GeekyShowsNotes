@@ -159,22 +159,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 ```sh
 sudo service apache2 restart
 ```
-- You can check error logs If you get any error:
-```sh
-cd /var/logs/apache2
-sudo cat server.log
-```
-- If get Error mod_wsgi (pid=1234): Failed to proxy response from daemon then follow below instructions:
-- Open apache2.conf
-```sh
-cd /etc/apache2
-sudo nano apache2.conf
-```
-- Write below code in the bottom of apache2.conf file
-```sh
-WSGIApplicationGroup %{GLOBAL}
-```
-- To Know more about %{GLOBAL} follow this link: https://modwsgi.readthedocs.io/en/develop/configuration-directives/WSGIApplicationGroup.html
 - Serve Static Files
 ```sh
 python manage.py collectstatic
@@ -192,5 +176,22 @@ python manage.py migrate
 ```sh
 deactivate
 ```
-
+- You can check error logs If you get any error:
+```sh
+cd /var/log
+su
+cd apache2
+cat error.log
+```
+- If get Error mod_wsgi (pid=1234): Failed to proxy response from daemon then follow below instructions:
+- Open apache2.conf
+```sh
+cd /etc/apache2
+sudo nano apache2.conf
+```
+- Write below code in the bottom of apache2.conf file
+```sh
+WSGIApplicationGroup %{GLOBAL}
+```
+- To Know more about %{GLOBAL} follow this link: https://modwsgi.readthedocs.io/en/develop/configuration-directives/WSGIApplicationGroup.html
 
