@@ -176,5 +176,15 @@ python manage.py migrate
 ```sh
 deactivate
 ```
-
+- If get Error mod_wsgi (pid=1234): Failed to proxy response from daemon then follow below instructions:
+- Open apache2.conf
+```sh
+cd /etc/apache2
+sudo nano apache2.conf
+```
+- Write below code in the bottom of apache2.conf file
+```sh
+WSGIApplicationGroup %{GLOBAL}
+```
+- To Know more about %{GLOBAL} follow this link: https://modwsgi.readthedocs.io/en/develop/configuration-directives/WSGIApplicationGroup.html
 
