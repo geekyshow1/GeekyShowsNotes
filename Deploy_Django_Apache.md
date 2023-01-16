@@ -176,6 +176,11 @@ python manage.py migrate
 ```sh
 deactivate
 ```
+- You can check error logs If you get any error:
+```sh
+cd /var/logs/apache2
+sudo cat server.log
+```
 - If get Error mod_wsgi (pid=1234): Failed to proxy response from daemon then follow below instructions:
 - Open apache2.conf
 ```sh
