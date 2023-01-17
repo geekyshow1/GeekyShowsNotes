@@ -291,27 +291,24 @@ set -e
 
 echo "Deployment started ..."
 
-# Turn ON Maintenance Mode or return true
-# if already is in maintenance mode
-
-
 # Pull the latest version of the app
 git pull origin master
+
+# Activate Virtual Env
+. .env_name/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Clearing Cache
-
-# Recreate cache
-
+# Serve Static Files
+python manage.py collectstatic
 
 # Run database migrations
 python manage.py makemigrations
 python manage.py migrate
 
-# Turn OFF Maintenance mode
-
+# Deactivate Virtual Env
+deactivate
 
 echo "Deployment finished!"
 ```
