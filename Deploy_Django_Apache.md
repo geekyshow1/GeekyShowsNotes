@@ -11,7 +11,7 @@
 | AAAA  | www   | Your Remote Server IPv6 |
 
 - On Local Windows Machine, Goto Your Project Folder then follow below instruction:
-- Create a folder in your root project directory then move database file inside this created directory e.g. mndb/db.sqlite3
+- Create a folder in your root project directory then move database file inside this created directory e.g. mbdb/db.sqlite3
 - Open settings.py file then change sqlite db file path as it is now inside folder
 ```sh
 DATABASES = {
