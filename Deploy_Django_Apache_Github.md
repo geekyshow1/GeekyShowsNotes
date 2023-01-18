@@ -268,6 +268,16 @@ sudo groups raj
 ```sh
 deactivate
 ```
+- After making any change in the project you have to either restart server or touch the wsgi file only then it will reflect on website
+- Restarting Server is not good idea as there might be multiple website running on same server but still it is solution to reflect changes however we can also use graceful
+```sh
+sudo service apache2 restart
+// OR
+sudo service apache2 graceful
+// OR
+cd /var/www/miniblog/miniblog
+touch wsgi.py
+```
 #### Special Tip: If you face error "Name duplicates previous WSGI daemon definition" while installing SSL Certificate for your domain then comment below code then try to install SSL Certificate again and after successful installation un-comment it 
 ```sh
 cd /etc/apache2/sites-available/your_domain.conf
@@ -293,24 +303,32 @@ echo "Deployment started ..."
 
 # Pull the latest version of the app
 git pull origin master
+echo "New changes copied to server !"
 
 # Activate Virtual Env
-. .env_name/bin/activate
+source mb/bin/activate
+echo "Virtual env 'mb' Activated !"
 
-# Install dependencies
-pip install -r requirements.txt
+echo "Installing Dependencies..."
+pip install -r requirements.txt --no-input
 
-# Serve Static Files
-python manage.py collectstatic
+echo "Serving Static Files..."
+python manage.py collectstatic --noinput
 
-# Run database migrations
+echo "Running Database migration"
 python manage.py makemigrations
 python manage.py migrate
 
 # Deactivate Virtual Env
 deactivate
+echo "Virtual env 'mb' Deactivated !"
 
-echo "Deployment finished!"
+# Reloading Application So New Changes could reflect on website
+pushd miniblog
+touch wsgi.py
+popd
+
+echo "Deployment Finished!"
 ```
 - Go inside .scripts Folder then Set File Permission for .sh File
 ```sh
@@ -406,10 +424,5 @@ git pull
 - Your Deployment should become automate.
 - On Local Machine make some changes in Your Project then Commit and Push to Github Repo It will automatically deployed on Live Server
 - You can track your action from Github Actions Tab
-- If you get any File Permission error in the action then you have to change file permission accordingly e.g. Maintenance mode ON/OFF may need File Permission so you can set it to 775
-- Changing abc File Permission (This is just for example)
-```sh
-cd /var/www/miniblog/abc
-sudo chmod -R 775 abc
-```
+- If you get any File Permission error in the action then you have to change file permission accordingly.
 - All Done
