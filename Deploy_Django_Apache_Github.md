@@ -417,7 +417,7 @@ Example:- ssh -p 22 root@216.32.44.12
 Syntax:- cd /var/www/project_folder_name
 Example:- cd /var/www/miniblog
 ```
-- Pull the changes from github
+- Pull the changes from github just once this time.
 ```sh
 git pull
 ```
