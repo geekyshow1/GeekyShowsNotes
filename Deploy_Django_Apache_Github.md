@@ -270,6 +270,10 @@ sudo groups raj
 ```sh
 deactivate
 ```
+- If you make any changes in your project then you need to pull the new changes from github repo. It will update your website with latest changes.
+```sh
+git pull
+```
 - After making any change in the project you have to either restart server or touch the wsgi file only then it will reflect on website
 - Restarting Server is not good idea as there might be multiple website running on same server but still it is solution to reflect changes however we can also use graceful
 ```sh
