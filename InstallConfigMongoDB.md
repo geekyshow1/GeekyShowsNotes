@@ -12,6 +12,8 @@ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb
 
 sudo apt update
 
+sudo apt upgrade
+
 sudo apt install mongodb-org
 ```
 - Verify MongoDb Installed or Not
