@@ -144,8 +144,8 @@ sudo nano /etc/apache2/sites-available/your_domain.conf
         ServerName www.example.com
         ServerAdmin contact@example.com
         ProxyPreserveHost On
-        ProxyPass / http://127.0.0.1:3000/
-        ProxyPassReverse / http://127.0.0.1:3000/
+        ProxyPass / http://127.0.0.1:8000/
+        ProxyPassReverse / http://127.0.0.1:8000/
         <Directory "/var/www/miniblog">
                 AllowOverride All
         </Directory>
@@ -180,12 +180,12 @@ show dbs
 - Create New Database
 ```sh
 Syntax:- use database_name
-Example:- use miniblog
+Example:- use blogdb
 ```
 - Create New User
 ```sh
 Syntax:- db.createUser({user:"username", pwd:passwordPrompt(), roles:[{role:"readWrite", db:"database_name"}]})
-Example:- db.createUser({user:"rahul", pwd:passwordPrompt(), roles:[{role:"readWrite", db:"miniblog"}]})
+Example:- db.createUser({user:"rahul", pwd:passwordPrompt(), roles:[{role:"readWrite", db:"blogdb"}]})
 ```
 - Verify Users
 ```sh
@@ -194,7 +194,7 @@ show users
 - Access Mongo Shell as User:
 ```sh
 Syntax:- mongosh --port 27017 --authenticationDatabase "database_name_where_user_stored" -u "username" -p "password"
-mongosh --port 27017 --authenticationDatabase "miniblog" -u "rahul" -p "Hello123456#"
+mongosh --port 27017 --authenticationDatabase "blogdb" -u "rahul" -p "Hello123456"
 ```
 - Open .env
 ```sh
@@ -203,10 +203,14 @@ sudo nano .env
 ```
 - Make below changes
 ```sh
-HOST = Your_Server_IP
+HOST = 127.0.0.1
 PORT = 8000
 
-DATABASE_URL = "mongodb://rahul:Hello123456#@Your_server_IP:27017/miniblog"
+DATABASE_URL = "mongodb://127.0.0.1:27017"
+DBNAME = "Your_Database_Name"
+DBUSERNAME = "Your_Database_Username"
+DBPASSWORD = "Your_Database_Password"
+DBAUTHSOURCE = "database_name_where_user_stored"
 ```
 - Restart Apache2
 ```sh
