@@ -42,7 +42,7 @@ security:
   authorization: enabled
 net:
   port: 27017
-  bindIp: 127.0.0.1,Your_IP_Address
+  bindIp: 127.0.0.1
 ```
 - Check Port is Allowed through Firewall
 ```sh
@@ -59,9 +59,4 @@ sudo service mongod restart
 - Confirm if MongoDB is allowing remote connections
 ```sh
 sudo lsof -i | grep mongo
-```
-
-- Install Node JS MongoDB Driver (If needed)
-```sh
-sudo npm install -P mongodb
 ```
