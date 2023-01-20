@@ -1,4 +1,4 @@
-### How to Create MongoDB Admin User
+### How to Create MongoDB SuperUser
 - If Authorization is Enable then Disable it by commenting below code
 ```sh
 sudo nano /etc/mongod.conf
