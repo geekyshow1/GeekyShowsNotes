@@ -71,18 +71,6 @@ sudo service mongod start
 ```sh
 sudo service mongod status 
 ```
-- Open and Edit MongoDB config file
-```sh
-sudo nano /etc/mongod.conf
-```
-- Make below changes in config file
-```sh
-security:
-  authorization: enabled
-net:
-  port: 27017
-  bindIp: 127.0.0.1,Your_IP_Address
-```
 - Check Port is Allowed through Firewall
 ```sh
 sudo ufw status verbose
@@ -190,6 +178,18 @@ Example:- db.createUser({user:"rahul", pwd:passwordPrompt(), roles:[{role:"readW
 - Verify Users
 ```sh
 show users
+```
+- Open and Edit MongoDB config file
+```sh
+sudo nano /etc/mongod.conf
+```
+- Make below changes in config file
+```sh
+security:
+  authorization: enabled
+net:
+  port: 27017
+  bindIp: 127.0.0.1,Your_IP_Address
 ```
 - Access Mongo Shell as User:
 ```sh
