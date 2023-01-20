@@ -249,6 +249,10 @@ sudo bash -c 'echo > /var/log/apache2/error.log'
 ```sh
 sudo pm2 startup
 ```
+- List All PM2 Process
+```sh
+sudo pm2 list
+```
 - Kill PM2 Process
 ```sh
 sudo pm2 kill
@@ -261,9 +265,17 @@ sudo pm2 delete app_name
 ```sh
 sudo pm2 save
 ```
+- Save PM2 Process with --force flag
+```sh
+sudo pm2 save --force
+```
 - Restore Last Saved PM2 Process
 ```sh
 sudo pm2 resurrect
+```
+- Clear PM2 Dump File
+```sh
+sudo pm2 cleardump
 ```
 - Remove PM2 Process from Startup
 ```sh
