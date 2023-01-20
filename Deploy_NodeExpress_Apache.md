@@ -52,44 +52,8 @@ sudo npm install -g pm2@latest
 sudo pm2 startup
 ```
 - Install MongoDB 6.0.3 on Ubuntu 22.04
-- Installation Process depends on MongoDB Version and Ubuntu Version
-```sh
-wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+  Follow this https://github.com/geekyshow1/GeekyShowsNotes/blob/main/InstallConfigMongoDB.md
 
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
-
-sudo apt update
-
-sudo apt install mongodb-org
-```
-- Enable MongoDB to start at system startup
-```sh
-sudo systemctl enable mongod
-```
-- Start MongoDB
-```sh
-sudo service mongod start
-```
-- Check MongoDB Status
-```sh
-sudo service mongod status 
-```
-- Check Port is Allowed through Firewall
-```sh
-sudo ufw status verbose
-```
-- If Port is not Allowed then Allow it through Firewall
-```sh
-sudo ufw allow 27017
-```
-- Restart MongoDB
-```sh
-sudo service mongod restart
-```
-- Confirm if MongoDB is allowing remote connections
-```sh
-sudo lsof -i | grep mongo
-```
 - Verify Apache2 is Active and Running
 ```sh
 sudo service apache2 status
@@ -173,9 +137,11 @@ sudo pm2 save
 ```sh
 sudo pm2 status
 ```
-- Connect to MongoDB shell
+- Connect to MongoDB shell with Super User
+  To Create Super User Follow https://github.com/geekyshow1/GeekyShowsNotes/blob/main/CreateMongoDBUser.md
 ```sh
-mongosh
+Syntax:- mongosh --port 27017 --authenticationDatabase "database_name_where_user_stored" -u "username" -p "password"
+Example:- mongosh --port 27017 --authenticationDatabase "admin" -u "superuser" -p "Hello123456"
 ```
 - Show database
 ```sh
@@ -195,22 +161,22 @@ Example:- db.createUser({user:"rahul", pwd:passwordPrompt(), roles:[{role:"readW
 ```sh
 show users
 ```
-- Open and Edit MongoDB config file
+- Exit Mongo Shell
 ```sh
-sudo nano /etc/mongod.conf
+quit()
 ```
-- Make below changes in config file
-```sh
-security:
-  authorization: enabled
-net:
-  port: 27017
-  bindIp: 127.0.0.1
-```
-- Access Mongo Shell as User:
+- Access Mongo Shell as User to Verify the User Credentials
 ```sh
 Syntax:- mongosh --port 27017 --authenticationDatabase "database_name_where_user_stored" -u "username" -p "password"
 mongosh --port 27017 --authenticationDatabase "blogdb" -u "rahul" -p "Hello123456"
+```
+- Exit Mongo Shell
+```sh
+quit()
+```
+- Restart MongoDB
+```sh
+sudo service mongod restart
 ```
 - Open .env
 ```sh
