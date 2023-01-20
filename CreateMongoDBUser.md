@@ -1,4 +1,14 @@
 ### How to Create MongoDB Admin User
+- If Authorization is Enable then Disable it by commenting below code
+```sh
+sudo nano /etc/mongod.conf
+#security:
+  #authorization: enabled
+```
+- Restart MongoDB
+```sh
+sudo service mongod restart
+```
 - Connect to MongoDB shell
 ```sh
 mongosh
@@ -19,6 +29,16 @@ Example:- db.createUser({user: "boss" , pwd: passwordPrompt() , roles: [{ role: 
 - Verify Users
 ```sh
 show users
+```
+- If Authorization is Disable then Enable it by removing comments from below code
+```sh
+sudo nano /etc/mongod.conf
+security:
+  authorization: enabled
+```
+- Restart MongoDB
+```sh
+sudo service mongod restart
 ```
 - Access Mongo Shell as Boss:
 ```sh
