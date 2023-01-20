@@ -21,10 +21,10 @@ show dbs
 ```sh
 use admin
 ```
-- Create boss aka admin user with all privileges and setup password
+- Create superuser with all privileges
 ```sh
-Syntax:- db.createUser({user: "username" , pwd: passwordPrompt() , roles: [{ role: "userAdminAnyDatabase" , db: "admin"}]})
-Example:- db.createUser({user: "boss" , pwd: passwordPrompt() , roles: [{ role: "userAdminAnyDatabase" , db: "admin"}]})
+Syntax:- db.createUser({user: "username" , pwd: passwordPrompt() , roles: ["root"]})
+Example:- db.createUser({user: "boss" , pwd: passwordPrompt() , roles: ["root"]})
 ```
 - Verify Users
 ```sh
@@ -77,7 +77,7 @@ show users
 - Access Mongo Shell as User:
 ```sh
 Syntax:- mongosh --port 27017 --authenticationDatabase "database_name_where_user_stored" -u "username" -p "password"
-mongosh --port 27017 --authenticationDatabase "blogdb" -u "rahul" -p "Hello123456"
+Example:- mongosh --port 27017 --authenticationDatabase "blogdb" -u "rahul" -p "Hello123456"
 ```
 - To Make Connection use:
 ```sh
