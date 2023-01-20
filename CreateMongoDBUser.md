@@ -1,4 +1,4 @@
-### How to Create MongoDB SuperUser
+### How to Create MongoDB Super User
 - If Authorization is Enable then Disable it by commenting below code
 ```sh
 sudo nano /etc/mongod.conf
@@ -24,7 +24,7 @@ use admin
 - Create superuser with all privileges
 ```sh
 Syntax:- db.createUser({user: "username" , pwd: passwordPrompt() , roles: ["root"]})
-Example:- db.createUser({user: "boss" , pwd: passwordPrompt() , roles: ["root"]})
+Example:- db.createUser({user: "superuser" , pwd: passwordPrompt() , roles: ["root"]})
 ```
 - Verify Users
 ```sh
@@ -40,21 +40,25 @@ security:
 ```sh
 sudo service mongod restart
 ```
-- Access Mongo Shell as Boss:
+- Access Mongo Shell as Super User:
 ```sh
 Syntax:- mongosh --port 27017 --authenticationDatabase "database_name_where_user_stored" -u "username" -p "password"
-Example:- mongosh --port 27017 --authenticationDatabase "admin" -u "boss" -p "Hello123456"
+Example:- mongosh --port 27017 --authenticationDatabase "admin" -u "superuser" -p "Hello123456"
 ```
 - To Make Connection use:
 ```sh
 Syntax:- mongodb://username:password@IP_Address:27017/database_name
-Example:- mongodb://boss:Hello123456@216.32.44.12:27017/blogdb
+Example:- mongodb://superuser:Hello123456@216.32.44.12:27017/blogdb
 ```
 
 ### How to Create MongoDB User and Assign to a Database
 - Connect to MongoDB shell
 ```sh
-mongosh
+- If Authorization Disable
+    mongosh
+
+- If Authorization Enable and have Superuser (Recommended)
+    mongosh --port 27017 --authenticationDatabase "admin" -u "superuser" -p "Hello123456"
 ```
 - Show database
 ```sh
