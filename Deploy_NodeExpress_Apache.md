@@ -205,7 +205,7 @@ security:
   authorization: enabled
 net:
   port: 27017
-  bindIp: 127.0.0.1,Your_IP_Address
+  bindIp: 127.0.0.1
 ```
 - Access Mongo Shell as User:
 ```sh
