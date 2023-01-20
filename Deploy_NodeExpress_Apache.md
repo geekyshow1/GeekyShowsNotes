@@ -203,11 +203,10 @@ sudo nano .env
 ```
 - Make below changes
 ```sh
-HOST
-DBNAME
-DBUSERNAME
-DBPASSOWRD
-DBPORT
+HOST = Your_Server_IP
+PORT = 8000
+
+DATABASE_URL = "mongodb://rahul:Hello123456#@Your_server_IP:27017/miniblog"
 ```
 - Restart Apache2
 ```sh
