@@ -1,4 +1,7 @@
 ### How to Point Domain and Host Node Express Project on Apache Web Server VPS Hosting
+#### What is PM2 ?
+PM2 is a powerful, widely-used, and feature-rich, production-ready process manager for Node.js. Restarting PM2 with the processes it manages every time your server boots/reboots is critical. One of PM2’s key features is support for a startup script (generated dynamically based on the default init system on your server), that restarts PM2 and your processes at every server restart.
+
 - Login to Your Domain Provider Website
 - Navigate to Manage DNS
 - Add Following Records:
@@ -25,11 +28,11 @@ Example:- ssh -p 22 raj@216.32.44.12
 #### Note:- Run Below Commands on Your Remote Server Linux Machine or VPS, Not on Your Local Windows Machine
 - Verify that all required softwares are installed
 ```sh
-  apache2 -v
-  node -v
-  npm -v
-  pm2 --version
-  mongod --version  
+apache2 -v
+node -v
+npm -v
+pm2 --version
+mongod --version  
 ```
 - Install Apache
 ```sh
@@ -44,9 +47,9 @@ sudo apt-get install -y nodejs
 ```sh
 sudo npm install -g pm2@latest
 ```
-- Add PM2 to the startup script
+- Add PM2 Process on Startup
 ```sh
-sudo pm2 startup systemd
+sudo pm2 startup
 ```
 - Install MongoDB 6.0.3 on Ubuntu 22.04
 - Installation Process depends on MongoDB Version and Ubuntu Version
@@ -87,10 +90,6 @@ sudo service mongod restart
 ```sh
 sudo lsof -i | grep mongo
 ```
-- Install Node JS MongoDB Driver (If needed)
-```sh
-sudo npm install -P mongodb
-```
 - Verify Apache2 is Active and Running
 ```sh
 sudo service apache2 status
@@ -122,6 +121,10 @@ Example:- cd /var/www/miniblog
 ```sh
 npm install
 ```
+- Install Node JS MongoDB Driver (If needed)
+```sh
+npm install mongodb
+```
 - Create Virtual Host File
 ```sh
 sudo nano /etc/apache2/sites-available/your_domain.conf
@@ -145,8 +148,8 @@ sudo apache2ctl configtest
 ```
 - Enable the Proxy module with Apache
 ```sh
-sudo a2emmod proxy
-sudo a2emmod proxy_http
+sudo a2enmod proxy
+sudo a2enmod proxy_http
 ```
 - Enable Virtual Host
 ```sh
@@ -156,6 +159,19 @@ sudo a2ensite your_domain.conf
 - Restart Apache2
 ```sh
 sudo service apache2 restart
+```
+- Start Node Express Application using pm2
+```sh
+cd /var/www/miniblog
+sudo NODE_ENV=production pm2 start app.js --update-env
+```
+- Save PM2 Process
+```sh
+sudo pm2 save
+```
+- Check PM2 Status
+```sh
+sudo pm2 status
 ```
 - Connect to MongoDB shell
 ```sh
@@ -226,5 +242,31 @@ cat error.log
 - You can Clear Error Logs (Optional)
 ```sh
 sudo bash -c 'echo > /var/log/apache2/error.log'
+```
+
+### Extra PM2 Information:
+- Add PM2 Process on Startup
+```sh
+sudo pm2 startup
+```
+- Kill PM2 Process
+```sh
+sudo pm2 kill
+```
+- Delete App from PM2 Process
+```sh
+sudo pm2 delete app_name
+```
+- Save PM2 Process
+```sh
+sudo pm2 save
+```
+- Restore Last Saved PM2 Process
+```sh
+sudo pm2 resurrect
+```
+- Remove PM2 Process from Startup
+```sh
+sudo pm2 unstartup
 ```
 
