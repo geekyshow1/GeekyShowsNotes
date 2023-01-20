@@ -4,6 +4,7 @@
 mongod --version  
 ```
 - Install MongoDB 6.0.3 on Ubuntu 22.04
+- Installation Process depends on MongoDB Version and Ubuntu Version
 ```sh
 wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
 
