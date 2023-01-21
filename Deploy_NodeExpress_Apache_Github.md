@@ -1,4 +1,4 @@
-### How to Point Domain and Host Node Express Project on Apache Web Server VPS Hosting
+### How to Point Domain and Host Node Express Project using Github on Apache Web Server VPS Hosting
 #### What is PM2 ?
 PM2 is a powerful, widely-used, and feature-rich, production-ready process manager for Node.js. Restarting PM2 with the processes it manages every time your server boots/reboots is critical. One of PM2’s key features is support for a startup script (generated dynamically based on the default init system on your server), that restarts PM2 and your processes at every server restart.
 
