@@ -94,6 +94,7 @@ npm install mongodb
 sudo nano /etc/apache2/sites-available/your_domain.conf
 ```
 - Add Following Code in Virtual Host File
+- Change the IP and Port According to your Node Application Code
 ```sh
 <VirtualHost *:80>
         ServerName www.example.com
@@ -168,7 +169,7 @@ quit()
 - Access Mongo Shell as User to Verify the User Credentials
 ```sh
 Syntax:- mongosh --port 27017 --authenticationDatabase "database_name_where_user_stored" -u "username" -p "password"
-mongosh --port 27017 --authenticationDatabase "blogdb" -u "rahul" -p "Hello123456"
+Example:- mongosh --port 27017 --authenticationDatabase "blogdb" -u "rahul" -p "Hello123456"
 ```
 - Exit Mongo Shell
 ```sh
@@ -197,6 +198,15 @@ DBAUTHSOURCE = "database_name_where_user_stored"
 - Restart Apache2
 ```sh
 sudo service apache2 restart
+```
+- Start Node Express Application using pm2
+```sh
+cd /var/www/miniblog
+sudo NODE_ENV=production pm2 start app.js --update-env
+```
+- Save PM2 Process
+```sh
+sudo pm2 save
 ```
 - You can check error logs If you get any error:
 ```sh
