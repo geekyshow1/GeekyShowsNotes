@@ -166,7 +166,7 @@ sudo pm2 save
 ```sh
 sudo pm2 status
 ```
-- Connect to MongoDB shell with Super User
+- Connect to MongoDB shell with Super User,
   To Create Super User Follow https://github.com/geekyshow1/GeekyShowsNotes/blob/main/CreateMongoDBUser.md
 ```sh
 Syntax:- mongosh --port 27017 --authenticationDatabase "database_name_where_user_stored" -u "username" -p "password"
@@ -247,7 +247,7 @@ cat error.log
 ```sh
 sudo bash -c 'echo > /var/log/apache2/error.log'
 ```
-
+##
 ### How to Automate Node Express Deployment using Github Action
 - On Your Local Machine, Open Your Project using VS Code or any Editor
 - Create A Folder named .scripts inside your root project folder e.g. miniblog/.scripts
