@@ -265,7 +265,7 @@ git pull origin master
 echo "New changes copied to server !"
 
 echo "Installing Dependencies..."
-npm install
+npm install --yes
 
 echo "Deployment Finished!"
 ```
