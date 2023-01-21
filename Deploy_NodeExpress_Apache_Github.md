@@ -13,6 +13,7 @@ PM2 is a powerful, widely-used, and feature-rich, production-ready process manag
 | AAAA  | @     | Your Remote Server IPv6 |
 | AAAA  | www   | Your Remote Server IPv6 |
 
+- Open Project on VS Code then add .gitignore file also create .env.example file
 - Push your Poject to You Github Account as Private Repo
 - To Access Remote Server via SSH
 ```sh
