@@ -157,7 +157,7 @@ sudo service apache2 restart
 - Start Node Express Application using pm2
 ```sh
 cd /var/www/miniblog
-sudo NODE_ENV=production pm2 start app.js --update-env
+sudo NODE_ENV=production pm2 start app.js --watch --update-env
 ```
 - Save PM2 Process
 ```sh
