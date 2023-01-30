@@ -134,6 +134,16 @@ sudo a2ensite your_domain.conf
 ```sh
 sudo service apache2 restart
 ```
+- Now you can make some changes in your project local development VS Code and Pull it on Remote Server
+- Go to Your Project Directory
+```sh
+Syntax:- cd /var/www/project_folder_name
+Example:- cd /var/www/miniblog
+```
+- Pull the changes from github repo
+```sh
+git pull
+```
 ##
 ### How to Automate ReactJS, VueJS, NextJS and Nuxt Deployment using Github Action
 - On Your Local Machine, Open Your Project using VS Code or any Editor
@@ -154,11 +164,11 @@ echo "Installing Dependencies..."
 npm install --yes
 
 echo "Creating Production Build..."
-# For ReactJS and VueJS
+# For ReactJS VueJS and Nuxt JS
 npm run build
 
 # For NextJS
-npm run export
+# npm run export
 
 echo "Deployment Finished!"
 ```
@@ -194,7 +204,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          script: "cd /var/www/miniblog && ./.scripts/deploy.sh"
+          script: "cd /var/www/project_folder_name && ./.scripts/deploy.sh"
 ```
 - Go to Your Github Repo Click on Settings
 - Click on Secrets and Variables from the Sidebar then choose Actions
