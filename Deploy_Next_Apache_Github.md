@@ -155,15 +155,15 @@ sudo service apache2 restart
 - Start NextJS Application using pm2
 ```sh
 cd /var/www/project_folder_name
-pm2 start app.js --watch --ignore-watch="user_upload_path"
+pm2 start npm --name therajeshkumar -- run start -- -p 3000
 ```
 - Save PM2 Process
 ```sh
-sudo pm2 save
+pm2 save
 ```
 - Check PM2 Status
 ```sh
-sudo pm2 status
+pm2 status
 ```
 - Now you can make some changes in your project local development VS Code and Pull it on Remote Server
 - Go to Your Project Directory
