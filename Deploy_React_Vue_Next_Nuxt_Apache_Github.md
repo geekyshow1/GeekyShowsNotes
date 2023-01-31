@@ -143,6 +143,12 @@ Example:- cd /var/www/miniblog
 ```sh
 git pull
 ```
+- Create Production Build
+```sh
+npm run build
+// OR
+npm run export
+```
 ##
 ### How to Automate ReactJS, VueJS, NextJS and Nuxt Deployment using Github Action
 - On Your Local Machine, Open Your Project using VS Code or any Editor
