@@ -11,7 +11,7 @@
 | AAAA  | @     | Your Remote Server IPv6 |
 | AAAA  | www   | Your Remote Server IPv6 |
 
-- Open Project on VS Code then add .gitignore file also create .env.example file
+- Open Project on VS Code then add .gitignore file also create .env.example file (If needed)
 - Push your Poject to You Github Account as Private Repo
 - To Access Remote Server via SSH
 ```sh
@@ -111,7 +111,6 @@ npm run export
 sudo nano /etc/apache2/sites-available/your_domain.conf
 ```
 - Add Following Code in Virtual Host File
-- Change the IP and Port According to your Node Application Code
 ```sh
 <VirtualHost *:80>
     ServerName www.example.com
