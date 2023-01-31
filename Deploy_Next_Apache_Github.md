@@ -107,6 +107,10 @@ Example:- sudo mv miniblog /var/www
 Syntax:- cd /var/www/project_folder_name
 Example:- cd /var/www/miniblog
 ```
+- Clear NPM Cache (Optional)
+```sh
+npm cache clean --force
+```
 - Install Dependencies
 ```sh
 npm install
