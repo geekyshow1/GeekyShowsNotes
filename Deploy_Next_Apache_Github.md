@@ -183,6 +183,11 @@ git pull
 ```sh
 npm run build
 ```
+- Reload using PM2
+```sh
+pm2 reload app_name
+```
+
 ##
 ### How to Automate NextJS Deployment using Github Action
 - On Your Local Machine, Open Your Project using VS Code or any Editor
@@ -204,6 +209,9 @@ npm install --yes
 
 echo "Creating Production Build..."
 npm run build
+
+echo "PM2 Reload"
+pm2 reload app_name
 
 echo "Deployment Finished!"
 ```
