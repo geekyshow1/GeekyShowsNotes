@@ -155,10 +155,27 @@ sudo a2ensite your_domain.conf
 ```sh
 sudo service apache2 restart
 ```
-- Start NuxtJS Application using pm2
+- Create pm2 config File
 ```sh
 cd /var/www/project_folder_name
-pm2 start .output/server/index.mjs --name myapp --port 30001
+sudo nano ecosystem.config.js
+```
+- Write below code in ecosystem.config.js file
+```sh
+module.exports = {
+  apps : [
+      {
+        name: "myapp",
+        script: ".output/server/index.mjs",
+        port: 3001,
+        watch: true
+      }
+  ]
+}
+```
+- Start NuxtJS Application using pm2
+```sh
+pm2 start ecosystem.config.js
 ```
 - Save PM2 Process
 ```sh
