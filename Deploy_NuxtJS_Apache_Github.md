@@ -130,8 +130,8 @@ sudo nano /etc/apache2/sites-available/your_domain.conf
     ServerAdmin contact@example.com
     ProxyPreserveHost On
     #Write Your own Port
-    ProxyPass / http://127.0.0.1:3000/
-    ProxyPassReverse / http://127.0.0.1:3000/
+    ProxyPass / http://127.0.0.1:3001/
+    ProxyPassReverse / http://127.0.0.1:3001/
     <Directory "/var/www/project_folder_name">
         AllowOverride All
     </Directory>
