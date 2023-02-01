@@ -157,8 +157,7 @@ sudo service apache2 restart
 ```
 - Create pm2 config File
 ```sh
-cd /var/www/project_folder_name
-sudo nano ecosystem.config.js
+sudo nano /var/www/project_folder_name/ecosystem.config.js
 ```
 - Write below code in ecosystem.config.js file
 ```sh
@@ -186,13 +185,9 @@ pm2 save
 pm2 status
 ```
 - Now you can make some changes in your project local development VS Code and Pull it on Remote Server
-- Go to Your Project Directory
-```sh
-Syntax:- cd /var/www/project_folder_name
-Example:- cd /var/www/miniblog
-```
 - Pull the changes from github repo
 ```sh
+cd /var/www/project_folder_name
 git pull
 ```
 - Create Production Build
