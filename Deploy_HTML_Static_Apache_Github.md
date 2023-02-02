@@ -123,7 +123,7 @@ cat error.log
 sudo bash -c 'echo > /var/log/apache2/error.log'
 ```
 ##
-### How to Automate Node Express Deployment using Github Action
+### How to Automate HTML Static Website Deployment using Github Action
 - On Your Local Machine, Open Your Project using VS Code or any Editor
 - Create A Folder named .scripts inside your root project folder e.g. miniblog/.scripts
 - Inside .scripts folder Create A file with .sh extension e.g. miniblog/.scripts/deploy.sh
