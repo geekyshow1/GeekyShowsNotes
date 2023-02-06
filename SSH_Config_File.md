@@ -1,7 +1,7 @@
 ### How to create and use SSH Config File 
 #
 ##### To Ease the Remote Server Login from Window Machine
-- Open Notepad then save file with filename 'config' on path C:\Users\YourUser\.ssh
+- Open Notepad then save file with filename 'config' on path C:\Users\YourUser\\.ssh
 - We will convert newly created config text file to config file, To do this Open cmd then
 ```sh
 cd c:\users\yourUser\.ssh
