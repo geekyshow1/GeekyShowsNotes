@@ -49,7 +49,7 @@ Example:- ssh geek-vps-ubuntu
 touch ~/.ssh/config
 ```
 - Edit config using nano
-- ```sh
+```sh
 nano ~/.ssh/config
 ```
 - Write below credentials then save it
