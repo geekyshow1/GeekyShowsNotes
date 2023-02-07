@@ -43,12 +43,6 @@ sudo service nginx status
 OR
 sudo systemctl status nginx
 ```
-- Enable Nginx
-```sh
-sudo service nginx enable
-OR
-sudo systemctl enable nginx
-```
 - Start Nginx
 ```sh
 sudo service nginx start
@@ -64,6 +58,8 @@ sudo systemctl stop nginx
 - Test Nginx Config
 ```sh
 sudo nginx -t
+OR
+sudo service nginx configtest
 OR
 service nginx configtest
 ```
