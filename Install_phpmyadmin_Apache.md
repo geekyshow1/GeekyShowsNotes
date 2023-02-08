@@ -1,4 +1,4 @@
-### How to Install phpmyadmin
+### How to Install phpmyadmin with Apache Web Server
 - Install phpMyAdmin and Other Plugins
 ```sh
 apt update
