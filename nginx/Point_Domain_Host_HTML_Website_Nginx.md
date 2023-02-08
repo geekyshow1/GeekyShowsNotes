@@ -50,27 +50,44 @@ sudo ufw status verbose
 ```
 - Create Virtual Host File
 ```sh
-nano /etc/apache2/sites-available/your_domain.conf
+Syntax:- sudo nano /etc/nginx/sites-available/your_domain
+Example:- sudo nano /etc/nginx/sites-available/sonamkumari.com
 ```
 - Add Following Code in Virtual Host File
 ```sh
-<VirtualHost *:80>
-    ServerName www.example.com
-    ServerAdmin contact@example.com
-    DocumentRoot /var/www/project_folder_name
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
+Syntax:-
+server{
+    listen 80;
+    listen [::]:80;
+    server_name your_domain
+    root your_project_root_directory_path
+    index index.html
+    location / {
+        try_files $uri $uri/ =404 ;
+    }
+}
+
+Example:- 
+server{
+    listen 80;
+    listen [::]:80;
+    server_name sonamkumari.com
+    root var/www/sonamkumari
+    index index.html
+    location / {
+        try_files $uri $uri/ =404 ;
+    }
+}
 ```
-- Enable Virtual Host
+- Check Configuration is Correct or Not
 ```sh
-cd /etc/apache2/sites-available/
-a2ensite your_domain.conf
+nginx -t
 ```
-- You can Disable Default Virtual Host
+- Enable Virtual Host or Create Link of Virtual Host File
 ```sh
-cd /etc/apache2/sites-available/
-a2dissite 000-default.conf
+cd /etc/nginx/sites-available/
+Syntax:- sudo ln -s /etc/nginx/sites-enabled/virtual_host_file /etc/nginx/sites-enabled/virtual_host_file
+Example:- sudo ln -s /etc/nginx/sites-enabled/sonamkumari.com /etc/nginx/sites-enabled/sonamkumari.com
 ```
 - Restart Nginx
 ```sh
