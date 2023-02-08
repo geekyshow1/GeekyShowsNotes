@@ -1,4 +1,4 @@
-### How to Install LAMP (Linux Nginx MySQL PHP) Stack
+### How to Install LEMP (Linux Nginx MySQL PHP) Stack
 
 - To Get Access via SSH
 ```sh
