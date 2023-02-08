@@ -59,9 +59,9 @@ Syntax:-
 server{
     listen 80;
     listen [::]:80;
-    server_name your_domain
-    root your_project_root_directory_path
-    index index.html
+    server_name your_domain www.your_domain;
+    root your_project_root_directory_path;
+    index index.html;
     location / {
         try_files $uri $uri/ =404;
     }
@@ -71,9 +71,9 @@ Example:-
 server{
     listen 80;
     listen [::]:80;
-    server_name sonamkumari.com
-    root var/www/sonamkumari
-    index index.html
+    server_name sonamkumari.com www.sonamkumari.com;
+    root /var/www/sonamkumari;
+    index index.html;
     location / {
         try_files $uri $uri/ =404;
     }
@@ -81,7 +81,7 @@ server{
 ```
 - Check Configuration is Correct or Not
 ```sh
-nginx -t
+sudo nginx -t
 ```
 - Enable Virtual Host or Create Symbolic Link of Virtual Host File
 ```sh
