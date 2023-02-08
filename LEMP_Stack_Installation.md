@@ -33,9 +33,9 @@ php-mysql - It is a PHP module that allows PHP to connect to MySQL
 ```
 - Check php-fpm is running
 ```sh
-sudo systemctl status php8.1-fpm
-OR
 sudo service php8.1-fpm status
+OR
+sudo systemctl status php8.1-fpm
 ```
 - Check Nginx Status
 ```sh
@@ -60,8 +60,6 @@ sudo systemctl stop nginx
 sudo nginx -t
 OR
 sudo service nginx configtest
-OR
-service nginx configtest
 ```
 - Reload Nginx
 ```sh
