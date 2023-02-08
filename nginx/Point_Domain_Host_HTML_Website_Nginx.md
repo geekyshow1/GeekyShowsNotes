@@ -63,7 +63,7 @@ server{
     root your_project_root_directory_path
     index index.html
     location / {
-        try_files $uri $uri/ =404 ;
+        try_files $uri $uri/ =404;
     }
 }
 
@@ -75,7 +75,7 @@ server{
     root var/www/sonamkumari
     index index.html
     location / {
-        try_files $uri $uri/ =404 ;
+        try_files $uri $uri/ =404;
     }
 }
 ```
@@ -83,11 +83,11 @@ server{
 ```sh
 nginx -t
 ```
-- Enable Virtual Host or Create Link of Virtual Host File
+- Enable Virtual Host or Create Symbolic Link of Virtual Host File
 ```sh
 cd /etc/nginx/sites-available/
-Syntax:- sudo ln -s /etc/nginx/sites-enabled/virtual_host_file /etc/nginx/sites-enabled/virtual_host_file
-Example:- sudo ln -s /etc/nginx/sites-enabled/sonamkumari.com /etc/nginx/sites-enabled/sonamkumari.com
+Syntax:- sudo ln -s /etc/nginx/sites-available/virtual_host_file /etc/nginx/sites-enabled/virtual_host_file
+Example:- sudo ln -s /etc/nginx/sites-available/sonamkumari.com /etc/nginx/sites-enabled/sonamkumari.com
 ```
 - Restart Nginx
 ```sh
