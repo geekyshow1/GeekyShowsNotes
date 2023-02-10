@@ -12,7 +12,7 @@
 | AAAA  | www   | Your Remote Server IPv6 |
 
 - Open Project on VS Code then add .gitignore file (If needed)
-- Push your Poject to You Github Account as Private Repo
+- Push your Poject to Your Github Account as Private Repo
 - To Access Remote Server via SSH
 ```sh
 Syntax:- ssh -p PORT USERNAME@HOSTIP
