@@ -7,9 +7,9 @@
 Syntax:- ssh -p PORT USERNAME@HOSTIP
 Example:- ssh -p 1034 raj@216.32.44.12
 ```
-- Install Certbot
+- Install Certbot and it’s Nginx plugin
 ```sh
-sudo apt install certbot
+sudo apt install certbot python3-certbot-nginx
 ```
 - Verify Web Server Ports are Open and Allowed through Firewall
 ```sh
@@ -17,7 +17,7 @@ sudo ufw status verbose
 ```
 - Obtain an SSL certificate
 ```sh
-sudo certbot --nginx
+sudo certbot --nginx -d your_domain.com -d www.your_domain.com
 ```
 - Check Status of Certbot
 ```sh
