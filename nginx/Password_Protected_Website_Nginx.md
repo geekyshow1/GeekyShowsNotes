@@ -25,7 +25,7 @@ sudo nano default
 location /admin {
   try_files $uri $uri/ =404;
   auth_basic "admin area";
-  auth_basic_user_file /etc/nginx/.htpasswd
+  auth_basic_user_file /etc/nginx/.htpasswd;
 }
 ```
 - Restart Nginx
