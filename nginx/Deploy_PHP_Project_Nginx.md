@@ -42,7 +42,7 @@ exit
 | AAAA  | www   | Your Remote Server IPv6 |
 
 - Copy Project from Local Machine to Remote Server or VPS. There are two ways to do it:-
-  1. Copy Directly from Local Machine to Remote Server:-
+  1. Using Command Prompt:-
       - On Local Windows Machine Make Your Project Folder a Zip File using any of the software e.g. winzip
       - Open Command Prompt
       - Copy Zip File from Local Windows Machine to Linux Remote Server
@@ -62,7 +62,7 @@ exit
       Example:- unzip miniblog.zip
       ```
       
-  2. Via Github
+  2. Using Github
       - Open Project on VS Code then add .gitignore file (If needed)
       - Push your Poject to Your Github Account as Private Repo
       - Make Connection between Remote Server and Github Repo via SSH Key
