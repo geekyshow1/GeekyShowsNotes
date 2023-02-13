@@ -120,14 +120,14 @@ sudo nano /etc/apache2/sites-available/your_domain.conf
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
-- Check Configuration is correct or not
-```sh
-sudo apache2ctl configtest
-```
 - Enable Virtual Host
 ```sh
 cd /etc/apache2/sites-available/
 sudo a2ensite your_domain.conf
+```
+- Check Configuration is correct or not
+```sh
+sudo apache2ctl configtest
 ```
 - Restart Apache2
 ```sh
