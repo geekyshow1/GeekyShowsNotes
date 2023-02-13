@@ -42,7 +42,7 @@ exit
 | AAAA  | www   | Your Remote Server IPv6 |
 
 - Copy Project from Local Machine to Remote Server or VPS. There are two ways to do it:-
-  1. Using Command Prompt:-
+  1. Using Command Prompt
       - On Local Windows Machine Make Your Project Folder a Zip File using any of the software e.g. winzip
       - Open Command Prompt
       - Copy Zip File from Local Windows Machine to Linux Remote Server
