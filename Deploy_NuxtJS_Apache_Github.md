@@ -137,10 +137,6 @@ sudo nano /etc/apache2/sites-available/your_domain.conf
     </Directory>
 </VirtualHost>
 ```
-- Check Configuration is correct or not
-```sh
-sudo apache2ctl configtest
-```
 - Enable the Proxy module with Apache
 ```sh
 sudo a2enmod proxy
@@ -150,6 +146,10 @@ sudo a2enmod proxy_http
 ```sh
 cd /etc/apache2/sites-available/
 sudo a2ensite your_domain.conf
+```
+- Check Configuration is correct or not
+```sh
+sudo apache2ctl configtest
 ```
 - Restart Apache2
 ```sh
