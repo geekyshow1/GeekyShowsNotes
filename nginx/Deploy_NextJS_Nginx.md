@@ -141,6 +141,22 @@ Example:- sudo ln -s /etc/nginx/sites-available/sonamkumari.com /etc/nginx/sites
 ```sh
 sudo nginx -t
 ```
+- Create pm2 config File
+```sh
+sudo nano /var/www/project_folder_name/ecosystem.config.js
+```
+- Write below code in ecosystem.config.js file
+```sh
+module.exports = {
+  apps : [
+      {
+        name: "myapp",
+        script: "npm start",
+        port: 3001
+      }
+  ]
+}
+```
 - Restart Nginx
 ```sh
 sudo service nginx restart
@@ -148,7 +164,7 @@ sudo service nginx restart
 - Start NextJS Application using pm2
 ```sh
 cd /var/www/project_folder_name
-pm2 start npm --name miniblog -- run start -- -p 3000
+pm2 start ecosystem.config.js
 ```
 - Save PM2 Process
 ```sh
