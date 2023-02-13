@@ -61,11 +61,7 @@ exit
       Syntax:- unzip zip_file_name
       Example:- unzip miniblog.zip
       ```
-      - Move Project Folder to Web server Public Directory
-      ```sh
-      Syntax:- sudo mv Project_Folder Destination_Path
-      Example:- sudo mv miniblog /var/www
-      ```
+      
   2. Via Github
       - Open Project on VS Code then add .gitignore file (If needed)
       - Push your Poject to Your Github Account as Private Repo
@@ -92,11 +88,11 @@ exit
       Syntax:- git clone ssh_repo_path
       Example:- git clone git@github.com:geekyshow1/miniblog.git
       ```
-      - Move Project Folder to Web Server public directory
-      ```sh
-      Syntax:- sudo mv project_folder_name /var/www
-      Example:- sudo mv miniblog /var/www
-      ```
+- Move Project Folder to Web Server public directory
+```sh
+Syntax:- sudo mv project_folder_name /var/www
+Example:- sudo mv miniblog /var/www
+```
 - Create Virtual Host File
 ```sh
 Syntax:- sudo nano /etc/nginx/sites-available/your_domain
@@ -134,9 +130,14 @@ sudo nginx -t
 ```sh
 sudo service nginx restart
 ```
+- Create phpmyadmin Symlink
+```sh
+sudo ln -s /usr/share/phpmyadmin /var/www/project_folder_name/phpmyadmin
+```
 - Login into mysql
 - Create Database User
 - Create Database
+- Import Database (If required)
 - Write Database Credentials in Project's Database Configuration File e.g. dbConnection.php
 - Restart Nginx
 ```sh
