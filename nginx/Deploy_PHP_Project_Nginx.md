@@ -143,6 +143,16 @@ sudo ln -s /usr/share/phpmyadmin /var/www/project_folder_name/phpmyadmin
 ```sh
 sudo service nginx restart
 ```
+- Now you can make some changes in your project local development VS Code and Pull it on Remote Server
+- Go to Your Project Directory
+```sh
+Syntax:- cd /var/www/project_folder_name
+Example:- cd /var/www/miniblog
+```
+- Pull the changes from github repo
+```sh
+git pull
+```
 ##
 ### How to Automate PHP Project Deployment using Github Action
 - On Your Local Machine, Open Your Project using VS Code or any Editor
