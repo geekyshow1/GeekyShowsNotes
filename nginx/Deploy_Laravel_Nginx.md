@@ -129,6 +129,10 @@ Example:- sudo ln -s /etc/nginx/sites-available/sonamkumari.com /etc/nginx/sites
 ```sh
 sudo nginx -t
 ```
+- Restart Nginx
+```sh
+sudo service nginx restart
+```
 - Copy .env.example to .env
 ```sh
 cd /var/www/project_folder_name
