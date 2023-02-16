@@ -8,9 +8,18 @@ Example:- ssh -p 1034 raj@216.32.44.12
 ```sh
 nginx -v
 php -v
-composer -v
 mysql
+composer -v
+node -v
+npm -v
 git --version
+```
+- Install Nginx, PHP and MySQL https://github.com/geekyshow1/GeekyShowsNotes/blob/main/nginx/LEMP_Stack_Installation.md
+- Install Composer https://github.com/geekyshow1/GeekyShowsNotes/blob/main/Install_Composer.md
+- Install Node and NPM https://github.com/geekyshow1/GeekyShowsNotes/blob/main/Install_Node_NPM.md
+- Install Git
+ ```sh
+sudo apt install git
 ```
 - Verify Nginx is Active and Running
 ```sh
@@ -99,10 +108,10 @@ server{
     listen 80;
     listen [::]:80;
     server_name your_domain www.your_domain;
-    root your_project_root_directory_path;
-    index index.php;
+    root /var/www/project_folder_name/public;
+    index index.php index.html;
     location / {
-        try_files $uri $uri/ =404;
+         try_files $uri $uri/ /index.php$is_args$args;
     }
     location ~ \.php$ {
         fastcgi_pass unix:/run/php/php8.1-fpm.sock;
@@ -120,45 +129,34 @@ Example:- sudo ln -s /etc/nginx/sites-available/sonamkumari.com /etc/nginx/sites
 ```sh
 sudo nginx -t
 ```
-- Create phpmyadmin Symlink
-```sh
-sudo ln -s /usr/share/phpmyadmin /var/www/project_folder_name/phpmyadmin
-```
-- Restart Nginx
-```sh
-sudo service nginx restart
-```
 - Copy .env.example to .env
 ```sh
-cd /var/www/project_folder
+cd /var/www/project_folder_name
 cp .env.example .env
 ```
 - Install Dependencies
 ```sh
 composer install --optimize-autoloader --no-dev
+npm install
 ```
 - Generate Application Key
 ```sh
 php artisan key:generate
 ```
 - Set Permission for storage and bootstrap/cache Folder
-- Make Webserver as owner for storage and bootstrap/cache. Our Webserver is running as nginx and group is also nginx.
 ```sh
-sudo chown -R nginx:nginx storage
-sudo chown -R nginx:nginx bootstrap/cache
+sudo chown -R www-data:www-data storage
+sudo chown -R www-data:www-data bootstrap/cache
 ```
-- You may face problem if you work with FTP so to fix this add your user to webserver user group following below instruction:
-- Check Your User Group
+- Add your User and web server user to www-data group
 ```sh
-sudo groups raj
-```
-- Add your User to webserver group
-```sh
-sudo usermod -a -G nginx raj
+sudo usermod -a -G www-data raj
+sudo usermod -a -G www-data nginx
 ```
 - Verify Your User is in Webserver Group
 ```sh
 sudo groups raj
+sudo groups nginx
 ```
 - Set storage's File Permission to 644
 ```sh
@@ -202,6 +200,10 @@ php artisan migrate
 ```sh
 php artisan storage:link
 ```
+- Create phpmyadmin Symlink to open phpmyadmin on web browser
+```sh
+sudo ln -s /usr/share/phpmyadmin /var/www/project_folder_name/public/phpmyadmin
+```
 - If you make any changes in your project then you need to pull the new changes from github repo. It will update your website with latest changes. (Only if you have used Github)
 ```sh
 git pull
@@ -227,6 +229,9 @@ git pull origin master
 
 # Install composer dependencies
 composer install --optimize-autoloader --no-dev --no-interaction
+
+# Install npm dependencies
+npm install --yes
 
 # Clearing Cache
 php artisan cache:clear
