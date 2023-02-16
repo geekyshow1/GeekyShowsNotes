@@ -202,7 +202,7 @@ php artisan migrate
 ```sh
 php artisan storage:link
 ```
-- If you make any changes in your project then you need to pull the new changes from github repo. It will update your website with latest changes.
+- If you make any changes in your project then you need to pull the new changes from github repo. It will update your website with latest changes. (Only if you have used Github)
 ```sh
 git pull
 ```
