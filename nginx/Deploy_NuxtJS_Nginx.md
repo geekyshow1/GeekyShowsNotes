@@ -97,19 +97,6 @@ exit
       Syntax:- git clone ssh_repo_path
       Example:- git clone git@github.com:geekyshow1/miniblog.git
       ```
-- Move Project Folder to Web Server public directory (Optional)
-```sh
-Syntax:- sudo mv project_folder_name /var/www
-Example:- sudo mv miniblog /var/www
-```
-- Install Dependencies
-```sh
-npm install
-```
-- Create Production Build
-```sh
-npm run build
-```
 - Create Virtual Host File
 ```sh
 Syntax:- sudo nano /etc/nginx/sites-available/your_domain
@@ -133,7 +120,6 @@ server{
 ```
 - Enable Virtual Host or Create Symbolic Link of Virtual Host File
 ```sh
-cd /etc/nginx/sites-available/
 Syntax:- sudo ln -s /etc/nginx/sites-available/virtual_host_file /etc/nginx/sites-enabled/virtual_host_file
 Example:- sudo ln -s /etc/nginx/sites-available/sonamkumari.com /etc/nginx/sites-enabled/sonamkumari.com
 ```
@@ -141,9 +127,18 @@ Example:- sudo ln -s /etc/nginx/sites-available/sonamkumari.com /etc/nginx/sites
 ```sh
 sudo nginx -t
 ```
-- Create pm2 config File
+- Install Dependencies
 ```sh
-sudo nano /var/www/project_folder_name/ecosystem.config.js
+cd ~/project_folder_name
+npm install
+```
+- Create Production Build
+```sh
+npm run build
+```
+- Create pm2 config File inside project folder
+```sh
+nano ecosystem.config.js
 ```
 - Write below code in ecosystem.config.js file
 ```sh
@@ -163,7 +158,6 @@ sudo service nginx restart
 ```
 - Start NextJS Application using pm2
 ```sh
-cd /var/www/project_folder_name
 pm2 start ecosystem.config.js
 ```
 - Save PM2 Process
@@ -175,11 +169,6 @@ pm2 save
 pm2 status
 ```
 - Now you can make some changes in your project local development VS Code and Pull it on Remote Server
-- Go to Your Project Directory
-```sh
-Syntax:- cd /var/www/project_folder_name
-Example:- cd /var/www/miniblog
-```
 - Pull the changes from github repo
 ```sh
 git pull
@@ -190,7 +179,7 @@ npm run build
 ```
 - Reload using PM2
 ```sh
-pm2 reload app_name
+pm2 reload app_name/id
 ```
 ##
 ### How to Automate NuxtJS Project Deployment using Github Action
@@ -215,7 +204,7 @@ echo "Creating Production Build..."
 npm run build
 
 echo "PM2 Reload"
-pm2 reload app_name
+pm2 reload app_name/id
 
 echo "Deployment Finished!"
 ```
@@ -251,7 +240,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          script: "cd /var/www/project_folder_name && ./.scripts/deploy.sh"
+          script: "cd ~/project_folder_name && ./.scripts/deploy.sh"
 ```
 - Go to Your Github Repo Click on Settings
 - Click on Secrets and Variables from the Sidebar then choose Actions
@@ -301,13 +290,9 @@ Secret: Private_SSH_KEY_Generated_On_Server
 Syntax:- ssh -p PORT USERNAME@HOSTIP
 Example:- ssh -p 22 raj@216.32.44.12
 ```
-- Go to Your Project Directory
-```sh
-Syntax:- cd /var/www/project_folder_name
-Example:- cd /var/www/miniblog
-```
 - Pull the changes from github just once this time.
 ```sh
+cd ~/project_folder_name
 git pull
 ```
 - Your Deployment should become automate.
