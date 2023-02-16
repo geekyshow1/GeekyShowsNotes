@@ -104,7 +104,7 @@ server{
     listen 80;
     listen [::]:80;
     server_name your_domain www.your_domain;
-    root your_project_root_directory_path;
+    root /var/www/project_folder_name;
     index index.php;
     location / {
         try_files $uri $uri/ =404;
@@ -203,7 +203,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          script: "cd /var/www/miniblog && ./.scripts/deploy.sh"
+          script: "cd /var/www/project_folder_name && ./.scripts/deploy.sh"
 ```
 - Go to Your Github Repo Click on Settings
 - Click on Secrets and Variables from the Sidebar then choose Actions
