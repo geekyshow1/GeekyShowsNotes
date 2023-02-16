@@ -133,7 +133,7 @@ sudo nginx -t
 ```sh
 sudo service nginx restart
 ```
-- Now you can make some changes in your project local development VS Code and Pull it on Remote Server
+- Now you can make some changes in your project local development VS Code and Pull it on Remote Server (Only if you have used Github)
 - Go to Your Project Directory
 ```sh
 Syntax:- cd /var/www/project_folder_name
