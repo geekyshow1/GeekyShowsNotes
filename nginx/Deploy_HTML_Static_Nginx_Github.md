@@ -91,7 +91,7 @@ server{
     listen 80;
     listen [::]:80;
     server_name your_domain www.your_domain;
-    root your_project_root_directory_path;
+    root /var/www/project_folder_name;
     index index.html;
     location / {
         try_files $uri $uri/ =404;
