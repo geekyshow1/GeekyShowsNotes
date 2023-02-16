@@ -97,15 +97,6 @@ exit
       Syntax:- git clone ssh_repo_path
       Example:- git clone git@github.com:geekyshow1/miniblog.git
       ```
-- Install Dependencies
-```sh
-cd project_folder_name
-npm install
-```
-- Create Production Build
-```sh
-npm run build
-```
 - Create Virtual Host File
 ```sh
 Syntax:- sudo nano /etc/nginx/sites-available/your_domain
@@ -137,9 +128,18 @@ Example:- sudo ln -s /etc/nginx/sites-available/sonamkumari.com /etc/nginx/sites
 ```sh
 sudo nginx -t
 ```
-- Create pm2 config File
+- Install Dependencies
 ```sh
-nano project_folder_name/ecosystem.config.js
+cd project_folder
+npm install
+```
+- Create Production Build
+```sh
+npm run build
+```
+- Create pm2 config File inside project folder
+```sh
+nano ecosystem.config.js
 ```
 - Write below code in ecosystem.config.js file
 ```sh
@@ -159,7 +159,6 @@ sudo service nginx restart
 ```
 - Start NextJS Application using pm2
 ```sh
-cd project_folder_name
 pm2 start ecosystem.config.js
 ```
 - Save PM2 Process
@@ -173,7 +172,6 @@ pm2 status
 - Now you can make some changes in your project local development VS Code and Pull it on Remote Server
 - Pull the changes from github repo
 ```sh
-cd project_folder_name
 git pull
 ```
 - Create Production Build
@@ -243,7 +241,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          script: "cd project_folder_name && ./.scripts/deploy.sh"
+          script: "cd /home/username/project_folder_name && ./.scripts/deploy.sh"
 ```
 - Go to Your Github Repo Click on Settings
 - Click on Secrets and Variables from the Sidebar then choose Actions
