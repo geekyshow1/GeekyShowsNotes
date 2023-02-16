@@ -167,7 +167,7 @@ sudo find storage -type f -exec chmod 644 {} \;
 sudo find storage -type d -exec chmod 775 {} \;
 ```
 - Open Mysql
-- Create Database User
+- Create Database User https://github.com/geekyshow1/GeekyShowsNotes/blob/main/AssignMySQL_DB_To_User.md
 - Create Database
 - Open .env File
 ```sh
