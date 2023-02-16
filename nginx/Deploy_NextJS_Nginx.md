@@ -120,7 +120,6 @@ server{
 ```
 - Enable Virtual Host or Create Symbolic Link of Virtual Host File
 ```sh
-cd /etc/nginx/sites-available/
 Syntax:- sudo ln -s /etc/nginx/sites-available/virtual_host_file /etc/nginx/sites-enabled/virtual_host_file
 Example:- sudo ln -s /etc/nginx/sites-available/sonamkumari.com /etc/nginx/sites-enabled/sonamkumari.com
 ```
@@ -130,7 +129,7 @@ sudo nginx -t
 ```
 - Install Dependencies
 ```sh
-cd project_folder
+cd ~/project_folder_name
 npm install
 ```
 - Create Production Build
@@ -241,7 +240,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          script: "cd /home/username/project_folder_name && ./.scripts/deploy.sh"
+          script: "cd ~/project_folder_name && ./.scripts/deploy.sh"
 ```
 - Go to Your Github Repo Click on Settings
 - Click on Secrets and Variables from the Sidebar then choose Actions
@@ -293,7 +292,7 @@ Example:- ssh -p 22 raj@216.32.44.12
 ```
 - Pull the changes from github just once this time.
 ```sh
-cd project_folder_name
+cd ~/project_folder_name
 git pull
 ```
 - Your Deployment should become automate.
