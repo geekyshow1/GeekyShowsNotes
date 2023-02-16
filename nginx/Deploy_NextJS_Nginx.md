@@ -97,13 +97,9 @@ exit
       Syntax:- git clone ssh_repo_path
       Example:- git clone git@github.com:geekyshow1/miniblog.git
       ```
-- Move Project Folder to Web Server public directory (Optional)
-```sh
-Syntax:- sudo mv project_folder_name /var/www
-Example:- sudo mv miniblog /var/www
-```
 - Install Dependencies
 ```sh
+cd project_folder_name
 npm install
 ```
 - Create Production Build
@@ -143,7 +139,7 @@ sudo nginx -t
 ```
 - Create pm2 config File
 ```sh
-sudo nano /var/www/project_folder_name/ecosystem.config.js
+nano project_folder_name/ecosystem.config.js
 ```
 - Write below code in ecosystem.config.js file
 ```sh
@@ -163,7 +159,7 @@ sudo service nginx restart
 ```
 - Start NextJS Application using pm2
 ```sh
-cd /var/www/project_folder_name
+cd project_folder_name
 pm2 start ecosystem.config.js
 ```
 - Save PM2 Process
@@ -175,13 +171,9 @@ pm2 save
 pm2 status
 ```
 - Now you can make some changes in your project local development VS Code and Pull it on Remote Server
-- Go to Your Project Directory
-```sh
-Syntax:- cd /var/www/project_folder_name
-Example:- cd /var/www/miniblog
-```
 - Pull the changes from github repo
 ```sh
+cd project_folder_name
 git pull
 ```
 - Create Production Build
@@ -190,7 +182,7 @@ npm run build
 ```
 - Reload using PM2
 ```sh
-pm2 reload app_name
+pm2 reload app_name/id
 ```
 ##
 ### How to Automate NextJS Project Deployment using Github Action
@@ -215,7 +207,7 @@ echo "Creating Production Build..."
 npm run build
 
 echo "PM2 Reload"
-pm2 reload app_name
+pm2 reload app_name/id
 
 echo "Deployment Finished!"
 ```
@@ -251,7 +243,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          script: "cd /var/www/project_folder_name && ./.scripts/deploy.sh"
+          script: "cd project_folder_name && ./.scripts/deploy.sh"
 ```
 - Go to Your Github Repo Click on Settings
 - Click on Secrets and Variables from the Sidebar then choose Actions
@@ -301,13 +293,9 @@ Secret: Private_SSH_KEY_Generated_On_Server
 Syntax:- ssh -p PORT USERNAME@HOSTIP
 Example:- ssh -p 22 raj@216.32.44.12
 ```
-- Go to Your Project Directory
-```sh
-Syntax:- cd /var/www/project_folder_name
-Example:- cd /var/www/miniblog
-```
 - Pull the changes from github just once this time.
 ```sh
+cd project_folder_name
 git pull
 ```
 - Your Deployment should become automate.
