@@ -168,7 +168,7 @@ pm2 save
 ```sh
 pm2 status
 ```
-- Now you can make some changes in your project local development VS Code and Pull it on Remote Server
+- Now you can make some changes in your project local development VS Code and Pull it on Remote Server (Only if you have used Github)
 - Pull the changes from github repo
 ```sh
 git pull
