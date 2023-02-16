@@ -113,7 +113,6 @@ server{
 ```
 - Enable Virtual Host or Create Symbolic Link of Virtual Host File
 ```sh
-cd /etc/nginx/sites-available/
 Syntax:- sudo ln -s /etc/nginx/sites-available/virtual_host_file /etc/nginx/sites-enabled/virtual_host_file
 Example:- sudo ln -s /etc/nginx/sites-available/sonamkumari.com /etc/nginx/sites-enabled/sonamkumari.com
 ```
@@ -121,18 +120,10 @@ Example:- sudo ln -s /etc/nginx/sites-available/sonamkumari.com /etc/nginx/sites
 ```sh
 sudo nginx -t
 ```
-- Restart Nginx
-```sh
-sudo service nginx restart
-```
 - Create phpmyadmin Symlink
 ```sh
 sudo ln -s /usr/share/phpmyadmin /var/www/project_folder_name/phpmyadmin
 ```
-- Login into mysql
-- Create Database User
-- Create Database
-- Import Database (If required)
 - Restart Nginx
 ```sh
 sudo service nginx restart
@@ -173,13 +164,12 @@ sudo groups raj
 ```sh
 sudo find storage -type f -exec chmod 644 {} \;
 ```
-- Set storage's Folder Permission to 755
+- Set storage's Folder Permission to 775
 ```sh
-sudo find storage -type d -exec chmod 755 {} \;
+sudo find storage -type d -exec chmod 775 {} \;
 ```
-- Done
 - Open Mysql
-- Create Database User (Optional)
+- Create Database User
 - Create Database
 - Open .env File
 ```sh
@@ -212,19 +202,9 @@ php artisan migrate
 ```sh
 php artisan storage:link
 ```
-- Clearing cache - You may need to run with sudo
-```sh
-php artisan cache:clear
-php artisan config:clear
-```
 - If you make any changes in your project then you need to pull the new changes from github repo. It will update your website with latest changes.
 ```sh
 git pull
-```
-- If you ever need to work on your project you can switch ON/OFF Maintenance mode 
-```sh
-php artisan down
-php artisan up
 ```
 
 ### How to Automate Laravel Deployment using Github Action
@@ -295,7 +275,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          script: "cd /var/www/miniblog && ./.scripts/deploy.sh"
+          script: "cd /var/www/project_folder_name && ./.scripts/deploy.sh"
 ```
 - Go to Your Github Repo Click on Settings
 - Click on Secrets and Variables from the Sidebar then choose Actions
