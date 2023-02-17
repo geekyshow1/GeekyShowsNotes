@@ -1,4 +1,4 @@
-### How to Point Domain and Deploy NuxtJS Project using Github on Nginx Remote Server or VPS
+### How to Point Domain and Deploy Node Express Project using Github on Nginx Remote Server or VPS
 - Get Access to Remote Server via SSH
 ```sh
 Syntax:- ssh -p PORT USERNAME@HOSTIP
