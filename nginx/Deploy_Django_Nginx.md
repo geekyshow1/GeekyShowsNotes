@@ -254,6 +254,59 @@ STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 ```
+- Activate Virtual Env
+```sh
+cd ~/project_folder_name
+source virtualenv_name/bin/activate
+```
+- Serve Static Files
+```sh
+cd /var/www/miniblog
+python manage.py collectstatic
+```
+- Create Database Tables
+```sh
+python manage.py makemigrations
+python manage.py migrate
+```
+- Create Superuser
+```sh
+python manage.py createsuperuser
+```
+- If Database File throws error Permission Denied then Set below permissions
+- Make Webserver as owner for database file. Our Webserver is running as www-data and group is also www-data.
+```sh
+Syntax:- 
+sudo chown -R www-data:www-data database_folder
+sudo chmod 775 database_folder
+sudo chmod 664 database_folder/database_file
+
+Example:-
+sudo chown -R www-data:www-data mbdb
+sudo chmod 775 mbdb
+sudo chmod 664 mbdb/db.sqlite3
+```
+- If Media Files (User Uploaded Files) throws error Permission Denied then Set below permissions
+```sh
+sudo chown -R www-data:www-data media
+```
+- You may face problem if you work with FTP so to fix this add your user to webserver user group following below instruction:
+- Check Your User Group
+```sh
+sudo groups raj
+```
+- Add your User to webserver group
+```sh
+sudo usermod -a -G www-data raj
+```
+- Verify Your User is in Webserver Group
+```sh
+sudo groups raj
+```
+- If needed Deactivate Virtual env
+```sh
+deactivate
+```
 - Restart Nginx
 ```sh
 sudo service nginx restart
