@@ -191,15 +191,13 @@ Example:- sudo systemctl enable sonamkumari.com.gunicorn.socket
 ```
 - Check Gunicorn Status
 ```sh
-Syntax:- sudo systemctl status your_domain.gunicorn.socket
-Example:- sudo systemctl status sonamkumari.com.gunicorn.socket
-
-sudo systemctl status gunicorn
+sudo systemctl status sonamkumari.com.gunicorn.socket
+sudo systemctl status sonamkumari.com.gunicorn
 ```
 - Restart Gunicorn
 ```sh
 sudo systemctl daemon-reload
-sudo systemctl restart gunicorn
+sudo systemctl restart sonamkumari.com.gunicorn
 ```
 - Create Virtual Host File
 ```sh
