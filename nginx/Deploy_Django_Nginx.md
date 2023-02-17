@@ -173,7 +173,7 @@ WorkingDirectory=/home/username/project_folder_name
 ExecStart=/home/username/project_folder_name/virtual_env_name/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
-          --bind unix:/run/your_domain.com.gunicorn.sock \
+          --bind unix:/run/your_domain.gunicorn.sock \
           inner_project_folder_name.wsgi:application
 
 [Install]
