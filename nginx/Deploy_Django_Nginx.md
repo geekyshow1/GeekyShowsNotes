@@ -144,11 +144,22 @@ Example:- sudo nano /etc/systemd/system/sonamkumari.com.gunicorn.socket
 ```
 - Write below code inside sonamkumari.com.gunicorn.socket File
 ```sh
+Syntax:- 
 [Unit]
 Description=your_domain.gunicorn socket
 
 [Socket]
 ListenStream=/run/your_domain.gunicorn.sock
+
+[Install]
+WantedBy=sockets.target
+
+Example:- 
+[Unit]
+Description=sonamkumari.com.gunicorn socket
+
+[Socket]
+ListenStream=/run/sonamkumari.com.gunicorn.sock
 
 [Install]
 WantedBy=sockets.target
@@ -160,6 +171,7 @@ Example:- sudo nano /etc/systemd/system/sonamkumari.com.gunicorn.service
 ```
 - Write below code inside sonamkumari.com.gunicorn.service File
 ```sh
+Syntax:-
 [Unit]
 Description=your_domain.gunicorn daemon
 Requires=your_domain.gunicorn.socket
@@ -167,14 +179,32 @@ After=network.target
 
 [Service]
 User=username
-Group=nginx
-#Group=www-data
+Group=groupname
 WorkingDirectory=/home/username/project_folder_name
 ExecStart=/home/username/project_folder_name/virtual_env_name/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/your_domain.gunicorn.sock \
           inner_project_folder_name.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+Example:-
+[Unit]
+Description=sonamkumari.com.gunicorn daemon
+Requires=sonamkumari.com.gunicorn.socket
+After=network.target
+
+[Service]
+User=raj
+Group=raj
+WorkingDirectory=/home/raj/miniblog
+ExecStart=/home/raj/miniblog/mb/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/sonamkumari.com.gunicorn.sock \
+          miniblog.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
@@ -206,6 +236,7 @@ Example:- sudo nano /etc/nginx/sites-available/sonamkumari.com
 ```
 - Write following Code in Virtual Host File
 ```sh
+Syntax:-
 server{
     listen 80;
     listen [::]:80;
@@ -228,6 +259,32 @@ server{
 
     location  /media/ {
         root /home/username/project_folder_name;
+    }
+}
+
+Example:-
+server{
+    listen 80;
+    listen [::]:80;
+
+    server_name sonamkumari.com www.sonamkumari.com;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    location / {
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_pass http://unix:/run/sonamkumari.com.gunicorn.sock;
+    }
+
+    location  /static/ {
+        root /home/raj/miniblog;
+    }
+
+    location  /media/ {
+        root /home/raj/miniblog;
     }
 }
 ```
@@ -261,7 +318,6 @@ source virtualenv_name/bin/activate
 ```
 - Serve Static Files
 ```sh
-cd /var/www/miniblog
 python manage.py collectstatic
 ```
 - Create Database Tables
@@ -273,35 +329,19 @@ python manage.py migrate
 ```sh
 python manage.py createsuperuser
 ```
-- If Database File throws error Permission Denied then Set below permissions
-- Make Webserver as owner for database file. Our Webserver is running as www-data and group is also www-data.
+- If Static and Media file doesn's work properly then add nginx user to raj group
+- Check nginx User Groups
 ```sh
-Syntax:- 
-sudo chown -R www-data:www-data database_folder
-sudo chmod 775 database_folder
-sudo chmod 664 database_folder/database_file
-
-Example:-
-sudo chown -R www-data:www-data mbdb
-sudo chmod 775 mbdb
-sudo chmod 664 mbdb/db.sqlite3
+groups nginx
 ```
-- If Media Files (User Uploaded Files) throws error Permission Denied then Set below permissions
+- Add nginx user to raj user group
 ```sh
-sudo chown -R www-data:www-data media
+Syntax:- sudo usermod -a -G group user
+Example:- sudo usermod -a -G raj nginx
 ```
-- You may face problem if you work with FTP so to fix this add your user to webserver user group following below instruction:
-- Check Your User Group
+- Verify nginx User is in raj Group
 ```sh
-sudo groups raj
-```
-- Add your User to webserver group
-```sh
-sudo usermod -a -G www-data raj
-```
-- Verify Your User is in Webserver Group
-```sh
-sudo groups raj
+groups nginx
 ```
 - If needed Deactivate Virtual env
 ```sh
@@ -437,8 +477,8 @@ Example:- ssh -p 22 root@216.32.44.12
 ```
 - Go to Your Project Directory
 ```sh
-Syntax:- cd /var/www/project_folder_name
-Example:- cd /var/www/miniblog
+Syntax:- cd /home/username/project_folder_name
+Example:- cd /home/raj/miniblog
 ```
 - Pull the changes from github just once this time.
 ```sh
