@@ -242,19 +242,32 @@ Example:- sudo ln -s /etc/nginx/sites-available/sonamkumari.com /etc/nginx/sites
 ```sh
 sudo nginx -t
 ```
-## will edit from here after break hint edit settings.py for db
-
+- Open Django Project settings.py
+```sh
+cd ~/project_folder_name/inner_project_folder_name
+nano settings.py
+```
+- Make below changes
+```sh
+ALLOWED_HOST = ["your_domain"]
+DEBUG = False
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'static'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+```
+- Restart Nginx
+```sh
+sudo service nginx restart
+```
 - Now you can make some changes in your project local development VS Code and Pull it on Remote Server (Only if you have used Github)
 - Pull the changes from github repo
 ```sh
 git pull
 ```
-- Reload using PM2
-```sh
-pm2 reload app_name/id
-```
+
 ##
-### How to Automate NuxtJS Project Deployment using Github Action
+### How to Automate Django Deployment using Github Action
 - On Your Local Machine, Open Your Project using VS Code or any Editor
 - Create A Folder named .scripts inside your root project folder e.g. miniblog/.scripts
 - Inside .scripts folder Create A file with .sh extension e.g. miniblog/.scripts/deploy.sh
@@ -263,17 +276,29 @@ pm2 reload app_name/id
 #!/bin/bash
 set -e
 
-echo "Deployment started..."
+echo "Deployment started ..."
 
 # Pull the latest version of the app
 git pull origin master
 echo "New changes copied to server !"
 
-echo "Installing Dependencies..."
-npm install --yes
+# Activate Virtual Env
+source mb/bin/activate
+echo "Virtual env 'mb' Activated !"
 
-echo "PM2 Reload"
-pm2 reload app_name/id
+echo "Installing Dependencies..."
+pip install -r requirements.txt --no-input
+
+echo "Serving Static Files..."
+python manage.py collectstatic --noinput
+
+echo "Running Database migration"
+python manage.py makemigrations
+python manage.py migrate
+
+# Deactivate Virtual Env
+deactivate
+echo "Virtual env 'mb' Deactivated !"
 
 echo "Deployment Finished!"
 ```
@@ -309,7 +334,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          script: "cd ~/project_folder_name && ./.scripts/deploy.sh"
+          script: "cd /var/www/project_folder_name && ./.scripts/deploy.sh"
 ```
 - Go to Your Github Repo Click on Settings
 - Click on Secrets and Variables from the Sidebar then choose Actions
@@ -331,7 +356,7 @@ Secret: Your_Server_User_Name
 ```sh
 whoami
 ```
-- Generate SSH Key for Github Action by Login into Remote Server then run below Command
+- Generate SSH Key for Github Action by Login into Remote Server then run below Command OR You can use old SSH Key But I am creating New one for Github Action
 ```sh
 Syntax:- ssh-keygen -f key_path -t ed25519 -C "your_email@example.com"
 Example:- ssh-keygen -f /home/raj/.ssh/gitaction_ed25519 -t ed25519 -C "gitactionautodep"
@@ -357,11 +382,15 @@ Secret: Private_SSH_KEY_Generated_On_Server
 - Get Access to Remote Server via SSH
 ```sh
 Syntax:- ssh -p PORT USERNAME@HOSTIP
-Example:- ssh -p 22 raj@216.32.44.12
+Example:- ssh -p 22 root@216.32.44.12
+```
+- Go to Your Project Directory
+```sh
+Syntax:- cd /var/www/project_folder_name
+Example:- cd /var/www/miniblog
 ```
 - Pull the changes from github just once this time.
 ```sh
-cd ~/project_folder_name
 git pull
 ```
 - Your Deployment should become automate.
@@ -369,3 +398,4 @@ git pull
 - You can track your action from Github Actions Tab
 - If you get any File Permission error in the action then you have to change file permission accordingly.
 - All Done
+
