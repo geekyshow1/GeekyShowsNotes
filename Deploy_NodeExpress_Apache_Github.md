@@ -131,7 +131,7 @@ sudo nano /etc/apache2/sites-available/your_domain.conf
         ProxyPreserveHost On
         ProxyPass / http://127.0.0.1:8000/
         ProxyPassReverse / http://127.0.0.1:8000/
-        <Directory "/var/www/miniblog">
+        <Directory "/var/www/project_folder_name">
                 AllowOverride All
         </Directory>
 </VirtualHost>
