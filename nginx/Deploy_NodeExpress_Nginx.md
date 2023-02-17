@@ -174,12 +174,16 @@ quit()
 ```sh
 sudo service mongod restart
 ```
-- Open .env
+- Create .env file 
 ```sh
 cd ~/project_folder_name
+cp .env.example .env
+```
+- Open .env
+```sh
 nano .env
 ```
-- Make below changes
+- Make below changes inside .env File
 ```sh
 HOST = 127.0.0.1
 PORT = 8001
