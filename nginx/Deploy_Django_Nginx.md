@@ -78,7 +78,8 @@ exit
       ```
       
   2. Using Github
-      - Open Project on VS Code then add .gitignore file (If needed)
+      - Open Project on VS Code then Create a .gitignore File and add static and media directory to .gitignore file
+      - If you need development media files in production then do not add media directory to .gitignore however you may still need to move media files to public directory e.g. /var/www/miniblog/media
       - Push your Poject to Your Github Account as Private Repo
       - Make Connection between Remote Server and Github Repo via SSH Key
       - Generate SSH Keys
@@ -296,7 +297,7 @@ sudo nginx -t
 ```sh
 sudo service nginx restart
 ```
-- Create required Directories inside /var/www
+- Create required Directories inside /var/www We will use it to serve static and media files only
 ```sh
 cd /var/www
 sudo mkdir project_folder_name
@@ -324,6 +325,7 @@ STATIC_ROOT = "/var/www/miniblog/static/"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = "/var/www/miniblog/media/"
+
 DEFAULT_FILE_STORAGE = '/var/www/miniblog/'
 ```
 - Activate Virtual Env
