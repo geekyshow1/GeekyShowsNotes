@@ -296,6 +296,19 @@ sudo nginx -t
 ```sh
 sudo service nginx restart
 ```
+- Create required Directories inside /var/www
+```sh
+cd /var/www
+sudo mkdir project_folder_name
+cd project_folder_name
+sudo mkdir static media
+```
+- Make User, Owner of /var/www/projectfolder (Optional)
+```sh
+cd /var/www
+Syntax:- sudo chown -R user:user project_folder_name
+Example:- sudo chown -R raj:raj miniblog
+```
 - Open Django Project settings.py
 ```sh
 cd ~/project_folder_name/inner_project_folder_name
@@ -311,6 +324,7 @@ STATIC_ROOT = "/var/www/miniblog/static/"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = "/var/www/miniblog/media/"
+DEFAULT_FILE_STORAGE = '/var/www/miniblog/'
 ```
 - Activate Virtual Env
 ```sh
