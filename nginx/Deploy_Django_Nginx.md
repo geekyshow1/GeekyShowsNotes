@@ -1,12 +1,12 @@
 ### How to Point Domain and Deploy Django Project using Github on Gunicorn & Nginx Remote Server or VPS
 - On Local Machine, Goto Your Project Folder then follow below instruction:
-- Open Terminal
-- Activate Your virtual Env
-- Create requirements.txt File
-```sh
-  pip freeze > requirements.txt
-```
-- Deactivate Virtual Env
+    - Open Terminal
+    - Activate Your virtual Env
+    - Create requirements.txt File
+    ```sh
+      pip freeze > requirements.txt
+    ```
+    - Deactivate Virtual Env
 - Get Access to Remote Server via SSH
 ```sh
 Syntax:- ssh -p PORT USERNAME@HOSTIP
@@ -309,7 +309,7 @@ cd ~/project_folder_name
 Syntax:- sudo mv media/* /var/www/project_folder_name/media/
 Example:- sudo mv media/* /var/www/miniblog/media/
 ```
-- Make User, Owner of /var/www/projectfolder (Optional)
+- Make User, Owner of /var/www/project_folder_name (Optional)
 ```sh
 cd /var/www
 Syntax:- sudo chown -R user:user project_folder_name
@@ -331,7 +331,6 @@ STATIC_ROOT = "/var/www/miniblog/static/"
 MEDIA_URL = '/media/'
 MEDIA_ROOT = "/var/www/miniblog/media/"
 
-DEFAULT_FILE_STORAGE = '/var/www/miniblog/'
 ```
 - Activate Virtual Env
 ```sh
