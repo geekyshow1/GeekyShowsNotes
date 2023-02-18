@@ -1,16 +1,5 @@
 ### How to Point Domain and Deploy Django Project using Github on Gunicorn & Nginx Remote Server or VPS
 - On Local Machine, Goto Your Project Folder then follow below instruction:
-- Create a folder in your root project directory then move database file inside this created directory e.g. mbdb/db.sqlite3
-- Open settings.py file then change sqlite db file path as it is now inside folder
-```sh
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'mbdb/db.sqlite3',
-    }
-}
-```
-- Save and Close settings.py file
 - Open Terminal
 - Activate Your virtual Env
 - Create requirements.txt File
@@ -209,22 +198,28 @@ ExecStart=/home/raj/miniblog/mb/bin/gunicorn \
 [Install]
 WantedBy=multi-user.target
 ```
-- Start Gunicorn Socket
+- Start Gunicorn Socket and Service
 ```sh
 Syntax:- sudo systemctl start your_domain.gunicorn.socket
 Example:- sudo systemctl start sonamkumari.com.gunicorn.socket
+
+Syntax:- sudo systemctl start your_domain.gunicorn.service
+Example:- sudo systemctl start sonamkumari.com.gunicorn.service
 ```
-- Enable Gunicorn Socket
+- Enable Gunicorn Socket and Service
 ```sh
 Syntax:- sudo systemctl enable your_domain.gunicorn.socket
 Example:- sudo systemctl enable sonamkumari.com.gunicorn.socket
+
+Syntax:- sudo systemctl enable your_domain.gunicorn.service
+Example:- sudo systemctl enable sonamkumari.com.gunicorn.service
 ```
 - Check Gunicorn Status
 ```sh
 sudo systemctl status sonamkumari.com.gunicorn.socket
-sudo systemctl status sonamkumari.com.gunicorn
+sudo systemctl status sonamkumari.com.gunicorn.service
 ```
-- Restart Gunicorn
+- Restart Gunicorn (You may need to restart everytime you make change in your project code)
 ```sh
 sudo systemctl daemon-reload
 sudo systemctl restart sonamkumari.com.gunicorn
@@ -254,11 +249,11 @@ server{
     }
     
     location  /static/ {
-        root /home/username/project_folder_name;
+        root /var/www/project_folder_name;
     }
 
     location  /media/ {
-        root /home/username/project_folder_name;
+        root /var/www/project_folder_name;
     }
 }
 
@@ -280,11 +275,11 @@ server{
     }
 
     location  /static/ {
-        root /home/raj/miniblog;
+        root /var/www/miniblog;
     }
 
     location  /media/ {
-        root /home/raj/miniblog;
+        root /var/www/miniblog;
     }
 }
 ```
@@ -297,6 +292,10 @@ Example:- sudo ln -s /etc/nginx/sites-available/sonamkumari.com /etc/nginx/sites
 ```sh
 sudo nginx -t
 ```
+- Restart Nginx
+```sh
+sudo service nginx restart
+```
 - Open Django Project settings.py
 ```sh
 cd ~/project_folder_name/inner_project_folder_name
@@ -306,10 +305,12 @@ nano settings.py
 ```sh
 ALLOWED_HOST = ["your_domain"]
 DEBUG = False
+
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = "/var/www/miniblog/static/"
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = "/var/www/miniblog/media/"
 ```
 - Activate Virtual Env
 ```sh
@@ -328,20 +329,6 @@ python manage.py migrate
 - Create Superuser
 ```sh
 python manage.py createsuperuser
-```
-- If Static and Media file doesn's work properly then add nginx user to raj group
-- Check nginx User Groups
-```sh
-groups nginx
-```
-- Add nginx user to raj user group
-```sh
-Syntax:- sudo usermod -a -G group user
-Example:- sudo usermod -a -G raj nginx
-```
-- Verify nginx User is in raj Group
-```sh
-groups nginx
 ```
 - If needed Deactivate Virtual env
 ```sh
