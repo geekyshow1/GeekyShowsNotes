@@ -197,9 +197,9 @@ DBAUTHSOURCE = "database_name_where_user_stored"
 - Create pm2 config File inside project folder
 ```sh
 cd ~/project_folder_name
-nano ecosystem.config.js
+nano ecosystem.config.cjs
 ```
-- Write below code in ecosystem.config.js file
+- Write below code in ecosystem.config.cjs file
 ```sh
 module.exports = {
   apps : [
@@ -217,7 +217,7 @@ sudo service nginx restart
 ```
 - Start NextJS Application using pm2
 ```sh
-pm2 start ecosystem.config.js
+pm2 start ecosystem.config.cjs
 ```
 - Save PM2 Process
 ```sh
@@ -337,11 +337,7 @@ Name: SSHKEY
 Secret: Private_SSH_KEY_Generated_On_Server
 ```
 - Commit and Push the change to Your Github Repo
-- Get Access to Remote Server via SSH
-```sh
-Syntax:- ssh -p PORT USERNAME@HOSTIP
-Example:- ssh -p 22 raj@216.32.44.12
-```
+
 - Pull the changes from github just once this time.
 ```sh
 cd ~/project_folder_name
