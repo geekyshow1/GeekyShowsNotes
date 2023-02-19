@@ -430,6 +430,7 @@ git pull origin master
 echo "New changes copied to server !"
 
 # Activate Virtual Env
+#Syntax:- source virtual_env_name/bin/activate
 source mb/bin/activate
 echo "Virtual env 'mb' Activated !"
 
@@ -489,7 +490,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          script: "cd /var/www/project_folder_name && ./.scripts/deploy.sh"
+          script: "cd ~/project_folder_name && ./.scripts/deploy.sh"
 ```
 - Go to Your Github Repo Click on Settings
 - Click on Secrets and Variables from the Sidebar then choose Actions
