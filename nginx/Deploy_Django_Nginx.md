@@ -2,6 +2,18 @@
 - On Local Machine, Goto Your Project Folder then follow below instruction:
     - Open Terminal
     - Activate Your virtual Env
+    - Install Django Extensions Package It will help to clear pyc and cache (Optional)
+    ```sh
+      pip install django-extensions
+    ```
+     - Add Django Extensions Package to INSTALLED_APPS in settings.py File
+    ```sh
+      INSTALLED_APPS = (
+        ...
+        'django_extensions',
+        ...
+      )
+    ```
     - Create requirements.txt File
     ```sh
       pip freeze > requirements.txt
@@ -337,6 +349,11 @@ MEDIA_ROOT = "/var/www/miniblog/media/"
 cd ~/project_folder_name
 source virtualenv_name/bin/activate
 ```
+- Clear pyc Files and Cache. It requires django-extensions package.
+```sh
+python manage.py clean_pyc
+python manage.py clear_cache
+```
 - Serve Static Files
 ```sh
 python manage.py collectstatic
@@ -354,6 +371,11 @@ python manage.py createsuperuser
 ```sh
 deactivate
 ```
+- Restart Gunicorn (You may need to restart everytime you make change in your project code)
+```sh
+sudo systemctl daemon-reload
+sudo systemctl restart sonamkumari.com.gunicorn
+```
 - Restart Nginx
 ```sh
 sudo service nginx restart
@@ -362,6 +384,11 @@ sudo service nginx restart
 - Pull the changes from github repo
 ```sh
 git pull
+```
+- Restart Gunicorn (You may need to restart everytime you make change in your project code)
+```sh
+sudo systemctl daemon-reload
+sudo systemctl restart sonamkumari.com.gunicorn
 ```
 
 ##
@@ -377,6 +404,7 @@ set -e
 echo "Deployment started ..."
 
 # Pull the latest version of the app
+echo "Copying New changes...."
 git pull origin master
 echo "New changes copied to server !"
 
@@ -384,13 +412,17 @@ echo "New changes copied to server !"
 source mb/bin/activate
 echo "Virtual env 'mb' Activated !"
 
+echo "Clearing Cache..."
+python manage.py clean_pyc
+python manage.py clear_cache
+
 echo "Installing Dependencies..."
 pip install -r requirements.txt --no-input
 
 echo "Serving Static Files..."
 python manage.py collectstatic --noinput
 
-echo "Running Database migration"
+echo "Running Database migration..."
 python manage.py makemigrations
 python manage.py migrate
 
@@ -398,7 +430,11 @@ python manage.py migrate
 deactivate
 echo "Virtual env 'mb' Deactivated !"
 
-echo "Deployment Finished!"
+echo "Reloading App..."
+#kill -HUP `ps -C gunicorn fch -o pid | head -n 1`
+ps aux |grep gunicorn |grep inner_project_folder_name | awk '{ print $2 }' |xargs kill -HUP
+
+echo "Deployment Finished !"
 ```
 - Go inside .scripts Folder then Set File Permission for .sh File
 ```sh
@@ -477,18 +513,9 @@ Name: SSHKEY
 Secret: Private_SSH_KEY_Generated_On_Server
 ```
 - Commit and Push the change to Your Github Repo
-- Get Access to Remote Server via SSH
+- Pull the changes from github to remote server just once this time
 ```sh
-Syntax:- ssh -p PORT USERNAME@HOSTIP
-Example:- ssh -p 22 root@216.32.44.12
-```
-- Go to Your Project Directory
-```sh
-Syntax:- cd /home/username/project_folder_name
-Example:- cd /home/raj/miniblog
-```
-- Pull the changes from github just once this time.
-```sh
+cd ~/project_folder_name
 git pull
 ```
 - Your Deployment should become automate.
