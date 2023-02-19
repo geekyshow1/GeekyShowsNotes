@@ -308,6 +308,24 @@ sudo nginx -t
 ```sh
 sudo service nginx restart
 ```
+- Fix Error:DisallowedHost at / Invalid HTTP_HOST header: 
+    - Open Django Project settings.py
+    ```sh
+    cd ~/project_folder_name/inner_project_folder_name
+    nano settings.py
+    ```
+    - Make below changes
+    ```sh
+    ALLOWED_HOST = ["your_domain"]
+    
+    Example:-
+    ALLOWED_HOST = ["sonamkumari.com", "www.sonamkumari.com"]
+    ```
+    - Restart Gunicorn (You need to restart everytime you make change in your project code)
+    ```sh
+    sudo systemctl daemon-reload
+    sudo systemctl restart sonamkumari.com.gunicorn
+    ```
 - Create required Directories inside /var/www We will use it to serve static and media files only
 ```sh
 cd /var/www
@@ -315,17 +333,17 @@ sudo mkdir project_folder_name
 cd project_folder_name
 sudo mkdir static media
 ```
-- If we want to use Development's Media Files then We should move development's media files to public directory
-```sh
-cd ~/project_folder_name
-Syntax:- sudo mv media/* /var/www/project_folder_name/media/
-Example:- sudo mv media/* /var/www/miniblog/media/
-```
-- Make User, Owner of /var/www/project_folder_name (Optional)
+- Make User, Owner of /var/www/project_folder_name
 ```sh
 cd /var/www
 Syntax:- sudo chown -R user:user project_folder_name
 Example:- sudo chown -R raj:raj miniblog
+```
+- If we want to use Development's Media Files then We should move development's media files to public directory (Optional)
+```sh
+cd ~/project_folder_name
+Syntax:- sudo mv media/* /var/www/project_folder_name/media/
+Example:- sudo mv media/* /var/www/miniblog/media/
 ```
 - Open Django Project settings.py
 ```sh
@@ -334,7 +352,6 @@ nano settings.py
 ```
 - Make below changes
 ```sh
-ALLOWED_HOST = ["your_domain"]
 DEBUG = False
 
 STATIC_URL = 'static/'
@@ -342,7 +359,11 @@ STATIC_ROOT = "/var/www/miniblog/static/"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = "/var/www/miniblog/media/"
-
+```
+- Restart Gunicorn (You need to restart everytime you make change in your project code)
+```sh
+sudo systemctl daemon-reload
+sudo systemctl restart sonamkumari.com.gunicorn
 ```
 - Activate Virtual Env
 ```sh
