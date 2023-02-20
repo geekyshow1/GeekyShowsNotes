@@ -237,7 +237,7 @@ git pull
 pm2 reload app_name/id
 ```
 ##
-### How to Automate NuxtJS Project Deployment using Github Action
+### How to Automate Node Express Project Deployment using Github Action
 - On Your Local Machine, Open Your Project using VS Code or any Editor
 - Create A Folder named .scripts inside your root project folder e.g. miniblog/.scripts
 - Inside .scripts folder Create A file with .sh extension e.g. miniblog/.scripts/deploy.sh
