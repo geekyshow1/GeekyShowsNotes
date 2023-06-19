@@ -106,6 +106,8 @@ npm run build
 // OR
 npm run export
 ```
+
+## For more than one shared hosted domain.
 - Create Virtual Host File
 ```sh
 sudo nano /etc/apache2/sites-available/your_domain.conf
@@ -125,6 +127,22 @@ sudo nano /etc/apache2/sites-available/your_domain.conf
 cd /etc/apache2/sites-available/
 sudo a2ensite your_domain.conf
 ```
+
+## For a dedicated hosted domain.
+- Create Virtual Host File
+```sh
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
+- Edit the Virtual Host File
+- Find a line with this snippet
+```sh
+DocumentRoot /var/www/html
+```
+- And modify it your project repository path
+```sh
+DocumentRoot /var/www/project_name/dist
+```
+
 - Check Configuration is correct or not
 ```sh
 sudo apache2ctl configtest
