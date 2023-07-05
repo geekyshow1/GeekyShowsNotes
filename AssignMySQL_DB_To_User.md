@@ -1,4 +1,4 @@
-### How to Assign Specific Database to Specific User in MySQL
+### How to Assign Specific Database to Specific User in MySQL //ok
 
 - Login to MySQL with Root User
 ```sh
