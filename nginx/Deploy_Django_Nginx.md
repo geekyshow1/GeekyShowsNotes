@@ -30,7 +30,7 @@ Example:- ssh -p 1034 raj@216.32.44.12
 - Verify that all required softwares are installed
 ```sh
 nginx -v
-python --version
+python --version  OR python3 --version
 pip --version
 - SQLite is Included with Python
   python -c "import sqlite3; print(sqlite3.sqlite_version)"
