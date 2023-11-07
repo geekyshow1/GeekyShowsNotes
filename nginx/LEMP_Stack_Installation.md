@@ -31,11 +31,11 @@ The above command includes three packages:-
 php-fpm -  To Install PHP and php-fpm
 php-mysql - It is a PHP module that allows PHP to connect to MySQL 
 ```
-- Check php-fpm is running
+- Check php-fpm is running. Note- Write your own php version e.g. php8.2-fpm
 ```sh
-sudo service php8.1-fpm status
+sudo service php8.2-fpm status
 OR
-sudo systemctl status php8.1-fpm
+sudo systemctl status php8.2-fpm
 ```
 - Check Nginx Status
 ```sh
