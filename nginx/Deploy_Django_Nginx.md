@@ -47,6 +47,8 @@ sudo apt install git
 ```sh
 pip list
 sudo pip install virtualenv
+OR
+sudo apt install python3-virtualenv
 ```
 - Verify Nginx is Active and Running
 ```sh
