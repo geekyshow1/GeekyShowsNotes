@@ -16,7 +16,7 @@ pm2 --version
 ```sh
 sudo apt install nginx
 sudo apt install git
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&\
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - &&\
 sudo apt-get install -y nodejs
 ```
 - Install PM2 (If required)
