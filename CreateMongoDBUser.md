@@ -5,7 +5,7 @@ sudo nano /etc/mongod.conf
 #security:
   #authorization: enabled
 ```
-- Restart MongoDB
+- Restart MongoDB file
 ```sh
 sudo service mongod restart
 ```
